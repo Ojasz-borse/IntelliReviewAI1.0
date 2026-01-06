@@ -1,0 +1,5 @@
+{
+  "name": "IntelliReview AI",
+  "description": "An AI-powered application to get comprehensive, real-time insights from across the internet for cars, social media, and more. It uses Google Gemini to analyze and summarize data.",
+  "requestFramePermissions": []
+}
