@@ -1,0 +1,787 @@
+{
+  "name": "Instagram Profile Data Extraction and Webhook Response",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "car-ai",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "7c995036-d99c-4874-b78c-cbe612b522a3",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        944,
+        928
+      ],
+      "webhookId": "af2224da-60bd-4a41-a14b-6c9fb0b5327f"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "791214a3-67ce-4d7b-bd55-d09126a1b495",
+      "name": "Webhook Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        2688,
+        928
+      ]
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-flash"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=User question: {{ $json.body.query }}\n\nIf external search is required:\n- Generate a SHORT, CLEAN Google search query\n- Do NOT include explanations\n\nRespond ONLY in JSON:\n{\n  \"search_query\": \"\"\n}"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      },
+      "id": "0811ea86-f231-4a59-a8e4-d09021f0f03b",
+      "name": "Generate Search Query",
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1,
+      "position": [
+        1168,
+        928
+      ],
+      "credentials": {
+        "googlePalmApi": {
+          "id": "pFAVFxyYg8aV4wuL",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://serpapi.com/search",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "serpApi",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "q",
+              "value": "={{ $json.content.parts[0].text }}"
+            },
+            {
+              "name": "engine",
+              "value": "google"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "357818ce-99fe-4f54-a441-85860a6091f9",
+      "name": "Call SerpAPI",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1744,
+        848
+      ],
+      "credentials": {
+        "serpApi": {
+          "id": "WYIbVkvobJo8JL8r",
+          "name": "SerpAPI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-flash"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Search results: {{ JSON.stringify($json) }}\n\nOriginal question: {{ $('Webhook').item.json.body.query }}\n\nExtract and validate information from the search results.\nProvide a clear, structured answer.\n"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "54bead73-a384-4570-8fde-729fb44748c3",
+      "name": "Extract and Summarize",
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1,
+      "position": [
+        1968,
+        848
+      ],
+      "credentials": {
+        "googlePalmApi": {
+          "id": "pFAVFxyYg8aV4wuL",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "id-1",
+              "leftValue": "={{ $json.content.parts[0].text }}",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "781cbc9f-8a9c-42ef-becd-6001c4d6183c",
+      "name": "Check Search Query",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1520,
+        928
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get raw text from Gemini or any node\nlet raw =\n  items[0].json?.content?.parts?.[0]?.text ||\n  items[0].json?.text ||\n  JSON.stringify(items[0].json);\n\n// Convert everything to string\nraw = String(raw);\n\n// Remove unwanted technical words/keys\nraw = raw.replace(/role:.*|finishReason:.*|index:.*|model|STOP/gi, \"\");\n\n// Remove escaped newlines and extra spaces\nraw = raw\n  .replace(/\\\\n/g, \" \")\n  .replace(/\\n/g, \" \")\n  .replace(/\\s+/g, \" \")\n  .trim();\n\n// Build clean output\nlet output = \"\";\noutput += \"CAR INFORMATION SUMMARY\\n\\n\";\noutput += raw + \"\";\noutput += \" CONCLUSION:- \";\noutput += \"Information above is converted into clean, readable text. \";\noutput += \"Always verify details with official sources.\";\n\nreturn [\n  {\n    json: {\n      structured_output: output\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2432,
+        800
+      ],
+      "id": "e6157a82-5bf3-4d0f-8fa8-912ec0fc72b3",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "instagram-profile",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "921b21a5-8c92-4d2c-b31b-6b8f345a76c5",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        944,
+        1152
+      ],
+      "webhookId": "d7f7f5e9-f5e8-44a5-93ac-df4938224f63"
+    },
+    {
+      "parameters": {
+        "url": "https://www.instagram.com/api/v1/users/web_profile_info/",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "username",
+              "value": "={{ $json.body.url.split('/').filter(s => s).pop() }}"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "Instagram 76.0.0.15.395 Android (24/7.0; 640dpi; 1440x2560; samsung; SM-G930F; herolte; samsungexynos8890; en_US; 138226743)"
+            },
+            {
+              "name": "X-IG-App-ID",
+              "value": "936619743392459"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d92f70cf-7867-4b7a-96b4-8e27e362ea0c",
+      "name": "Scrape Instagram Profile",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1168,
+        1152
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract Instagram profile data from API JSON response\nconst data = $input.first().json;\n\n// Access the user data from the API response\nconst userData = data.data?.user || {};\n\n// Timeline media (posts/reels)\nconst mediaEdges = userData.edge_owner_to_timeline_media?.edges || [];\n\n// Get last 10 posts\nconst last10Posts = mediaEdges.slice(0, 10).map(edge => {\n  const node = edge.node;\n  return {\n    id: node.id,\n    shortcode: node.shortcode,\n    isVideo: node.is_video,\n    caption: node.edge_media_to_caption?.edges?.[0]?.node?.text || '',\n    likeCount: node.edge_liked_by?.count || 0,\n    commentCount: node.edge_media_to_comment?.count || 0,\n    viewCount: node.video_view_count || 0,\n    takenAt: new Date(node.taken_at_timestamp * 1000).toISOString()\n  };\n});\n\n// Engagement calculations\nconst totalLikes = last10Posts.reduce((a, b) => a + b.likeCount, 0);\nconst totalComments = last10Posts.reduce((a, b) => a + b.commentCount, 0);\n\nconst avgLikes = last10Posts.length ? Math.round(totalLikes / last10Posts.length) : 0;\nconst avgComments = last10Posts.length ? Math.round(totalComments / last10Posts.length) : 0;\n\n// Most liked post\nconst mostLikedPost = last10Posts.reduce(\n  (max, post) => post.likeCount > max.likeCount ? post : max,\n  last10Posts[0] || {}\n);\n\n// Most viewed reel\nconst mostViewedReel = last10Posts\n  .filter(p => p.isVideo)\n  .reduce(\n    (max, post) => post.viewCount > max.viewCount ? post : max,\n    last10Posts[0] || {}\n  );\n\n// Bio links\nconst bioLinks = userData.bio_links?.map(l => l.url) || [];\n\n// Structure the profile data\nconst profileData = {\n  // Basic Info\n  username: userData.username || '',\n  fullName: userData.full_name || '',\n  biography: userData.biography || '',\n  profilePicUrl: userData.profile_pic_url_hd || userData.profile_pic_url || '',\n  externalUrl: userData.external_url || '',\n  bioLinks,\n\n  // Account Status\n  isVerified: userData.is_verified || false,\n  isPrivate: userData.is_private || false,\n  isBusiness: userData.is_business_account || false,\n  isProfessional: userData.is_professional_account || false,\n  category: userData.category_name || '',\n\n  // Counts\n  followersCount: userData.edge_followed_by?.count || 0,\n  followingCount: userData.edge_follow?.count || 0,\n  postsCount: userData.edge_owner_to_timeline_media?.count || 0,\n\n  // Contact (only if public)\n  businessEmail: userData.business_email || '',\n  businessPhone: userData.business_phone_number || '',\n  businessAddress: userData.business_address_json || {},\n\n  // Engagement\n  avgLikes,\n  avgComments,\n\n  // Highlights\n  hasHighlights: userData.highlight_reel_count > 0,\n\n  // Content Insights\n  last10Posts,\n  mostLikedPost,\n  mostViewedReel\n};\n\nreturn [{ json: profileData }];\n"
+      },
+      "id": "34e3a4f0-70ef-47c0-ae82-91fa23059bb8",
+      "name": "Extract and Structure Profile Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1600,
+        1152
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "08fce41e-5f2f-4db2-be69-3519c5bda9da",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        1824,
+        1152
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "news-validation",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "9e54d1a8-39f5-4487-810b-b89ae085e0ac",
+      "name": "Webhook - News Validation Request",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        880,
+        1392
+      ],
+      "webhookId": "a1ce886d-aa4f-4463-8048-5123a0ea9f6c"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "id-1",
+              "name": "newsQuery",
+              "value": "={{ $json.body.newsQuery || $json.body.query || $json.newsQuery || $json.query }}",
+              "type": "string"
+            },
+            {
+              "id": "id-2",
+              "name": "userEmail",
+              "value": "={{ $json.body.userEmail || $json.userEmail }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "f5c712c1-4944-4b34-9c94-73fc5c239d3d",
+      "name": "Workflow Configuration",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1104,
+        1392
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "c4a01856-e5d6-4589-9b55-a5e57b39009b",
+      "name": "Gemini Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1328,
+        1616
+      ],
+      "credentials": {
+        "googlePalmApi": {
+          "id": "pFAVFxyYg8aV4wuL",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"newsTitle\": \"Title of the news article\",\n  \"summary\": \"Brief summary of what the news claims\",\n  \"validationScore\": 85,\n  \"credibilityPercentage\": 85,\n  \"sourcesFound\": 5,\n  \"sourcesVerified\": 4,\n  \"verdict\": \"Likely True\",\n  \"keyFindings\": [\n    \"Finding 1: Multiple reputable sources confirm the main claim\",\n    \"Finding 2: Official statements support the story\",\n    \"Finding 3: Timeline matches across sources\"\n  ],\n  \"contradictions\": [\n    \"Minor discrepancy in reported numbers between sources\"\n  ],\n  \"recommendations\": \"This news appears credible based on multiple verified sources. However, some details vary slightly across reports.\"\n}"
+      },
+      "id": "882714b6-202e-40f8-a729-e41b41dfc373",
+      "name": "Structured Output Parser",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        1584,
+        1616
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.newsQuery }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "You are an expert news validation AI assistant. Your task is to validate news stories by searching for multiple sources and analyzing their credibility.\n\nWhen a user provides a news claim or story, you must:\n\n1. **Search Multiple Sources**: Use the Google Search tool to find at least 5-10 different sources discussing this news. Search for:\n   - The exact claim or headline\n   - Key people, organizations, or events mentioned\n   - Fact-checking websites (Snopes, FactCheck.org, PolitiFact, etc.)\n   - Reputable news organizations\n   - Official statements or press releases\n\n2. **Analyze Source Credibility**: For each source found, evaluate:\n   - Is it from a reputable news organization?\n   - Does it cite original sources or evidence?\n   - Is the publication date recent and relevant?\n   - Are there any obvious biases or conflicts of interest?\n\n3. **Cross-Reference Information**: Compare information across sources:\n   - What facts are consistently reported?\n   - What details vary between sources?\n   - Are there any contradictions?\n   - Do fact-checking sites confirm or debunk the claim?\n\n4. **Calculate Credibility Score**: Based on your analysis, assign a credibility percentage (0-100%) where:\n   - 90-100%: Highly credible, verified by multiple reputable sources\n   - 70-89%: Likely credible, supported by several sources with minor inconsistencies\n   - 50-69%: Uncertain, mixed evidence or limited sources\n   - 30-49%: Likely false, contradicted by credible sources\n   - 0-29%: False or misleading, debunked by fact-checkers\n\n5. **Provide Detailed Analysis**: Include:\n   - Summary of the news claim\n   - Number of sources found and verified\n   - Key findings that support or contradict the claim\n   - Any important context or nuances\n   - Clear verdict (True, Likely True, Uncertain, Likely False, False)\n   - Recommendations for the user\n\nBe thorough, objective, and cite specific sources in your analysis. Your goal is to help users make informed decisions about news credibility."
+        }
+      },
+      "id": "a923d6fd-e4c6-4fa7-9672-fe7fd7b3c2b6",
+      "name": "News Validation AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        1408,
+        1376
+      ]
+    },
+    {
+      "parameters": {
+        "toolDescription": "Search Google for news articles and sources about a topic. Provide the search query as input.",
+        "url": "https://serpapi.com/search",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "serpApi",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "engine",
+              "value": "google"
+            },
+            {
+              "name": "q",
+              "value": "={{ $fromAI('query', 'The search query to look up on Google') }}"
+            },
+            {
+              "name": "num",
+              "value": "10"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b4a7dfc7-f495-4355-bdd9-ebd5bd2a8fe4",
+      "name": "Google Search via SerpAPI",
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.3,
+      "position": [
+        1440,
+        1632
+      ],
+      "credentials": {
+        "serpApi": {
+          "id": "WYIbVkvobJo8JL8r",
+          "name": "SerpAPI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json.output }}",
+        "options": {}
+      },
+      "id": "15884e60-00e9-4ae8-9dd5-f5edb5903e64",
+      "name": "Respond to Webhook1",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        1792,
+        1392
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "loan-application",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "ae5810ba-70e6-46f4-90d8-52578a58c9a8",
+      "name": "Loan Application Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        832,
+        1856
+      ],
+      "webhookId": "d2751657-8578-4137-890a-865b61551d34"
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "options": {}
+      },
+      "id": "eb174c4a-3c61-440b-8d87-8c4d621cd135",
+      "name": "Extract Bank Statement Text",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        1056,
+        1856
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "c2b11aa3-b5b3-4be3-923e-9d2373fcf7fd",
+      "name": "Google Gemini Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        2080
+      ],
+      "credentials": {
+        "googlePalmApi": {
+          "id": "pFAVFxyYg8aV4wuL",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"repaymentProbability\": {\n      \"type\": \"number\",\n      \"description\": \"Percentage from 0-100 indicating likelihood of repayment\"\n    },\n    \"defaultRisk\": {\n      \"type\": \"number\",\n      \"description\": \"Percentage from 0-100 indicating risk of default\"\n    },\n    \"riskLevel\": {\n      \"type\": \"string\",\n      \"enum\": [\"low\", \"medium\", \"high\"],\n      \"description\": \"Overall risk level assessment\"\n    },\n    \"monthlyAnalysis\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"month\": {\n            \"type\": \"string\"\n          },\n          \"income\": {\n            \"type\": \"number\"\n          },\n          \"expenses\": {\n            \"type\": \"number\"\n          },\n          \"balance\": {\n            \"type\": \"number\"\n          },\n          \"canPayEMI\": {\n            \"type\": \"boolean\"\n          }\n        }\n      }\n    },\n    \"riskyMonths\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"string\"\n      },\n      \"description\": \"Month names where payment might fail\"\n    },\n    \"recommendation\": {\n      \"type\": \"string\",\n      \"description\": \"Loan approval recommendation\"\n    },\n    \"reasoning\": {\n      \"type\": \"string\",\n      \"description\": \"Detailed analysis and reasoning\"\n    },\n    \"creditworthiness\": {\n      \"type\": \"string\",\n      \"description\": \"Overall creditworthiness assessment\"\n    },\n    \"debtToIncomeRatio\": {\n      \"type\": \"number\",\n      \"description\": \"Debt to income ratio\"\n    }\n  }\n}",
+        "autoFix": true
+      },
+      "id": "aecf5ec0-3fbb-47db-9ea3-7b45b991e93b",
+      "name": "Loan Analysis Output Parser",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        1408,
+        2048
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json.output }}",
+        "options": {}
+      },
+      "id": "9ede2ac0-5e1c-4302-a643-21a2dcf9302d",
+      "name": "Return Analysis Report",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        1776,
+        1856
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Loan Application Details:\n- Declared Salary: {{ $('Loan Application Webhook').item.json.body.declaredSalary }}\n- Loan Amount Requested: {{ $('Loan Application Webhook').item.json.body.loanAmount }}\n- Loan Tenure: {{ $('Loan Application Webhook').item.json.body.tenure }}\n- Existing EMIs: {{ $('Loan Application Webhook').item.json.body.existingEMIs }}\n\nBank Statement (Last 6 Months):\n{{ $('Extract Bank Statement Text').item.json.text }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "You are an expert loan risk analyst. Analyze the loan application data and 6-month bank statement to generate a comprehensive risk assessment report. Calculate repayment probability percentage, default risk percentage, identify risky months where applicant might not be able to pay based on transaction patterns, analyze income stability, expense patterns, existing financial obligations, and provide detailed reasoning for your assessment. Compare declared salary with actual bank transactions to verify income claims. Assess debt-to-income ratio and overall creditworthiness."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "id": "22a5940c-7be4-41d6-9c1b-59f460c8240a",
+      "name": "Loan Risk Analysis",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        1312,
+        1856
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1408,
+        2192
+      ],
+      "id": "d46cb8f8-ed55-4a6c-b23c-c9894b2e8b5c",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "pFAVFxyYg8aV4wuL",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Generate Search Query",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Search Query": {
+      "main": [
+        [
+          {
+            "node": "Check Search Query",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Search Query": {
+      "main": [
+        [
+          {
+            "node": "Call SerpAPI",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Webhook Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call SerpAPI": {
+      "main": [
+        [
+          {
+            "node": "Extract and Summarize",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract and Summarize": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Webhook Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Scrape Instagram Profile",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Scrape Instagram Profile": {
+      "main": [
+        [
+          {
+            "node": "Extract and Structure Profile Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract and Structure Profile Data": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook - News Validation Request": {
+      "main": [
+        [
+          {
+            "node": "Workflow Configuration",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Workflow Configuration": {
+      "main": [
+        [
+          {
+            "node": "News Validation AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "News Validation AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "News Validation AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "News Validation AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Search via SerpAPI": {
+      "ai_tool": [
+        [
+          {
+            "node": "News Validation AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loan Application Webhook": {
+      "main": [
+        [
+          {
+            "node": "Extract Bank Statement Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Bank Statement Text": {
+      "main": [
+        [
+          {
+            "node": "Loan Risk Analysis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Loan Risk Analysis",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loan Analysis Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Loan Risk Analysis",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loan Risk Analysis": {
+      "main": [
+        [
+          {
+            "node": "Return Analysis Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Loan Analysis Output Parser",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "186b8622-d445-4ccf-a03d-741f888f1bfa",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e4fcc416aa050232989c42c8a6933aad6496797860e7ef4eda5e7f118d717f29"
+  },
+  "id": "tpED6CJitV86sDez",
+  "tags": []
+}
