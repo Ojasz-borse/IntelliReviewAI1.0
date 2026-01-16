@@ -52,3 +52,9 @@ firebase-debug.log
 
 # Gemini brain artifacts (local only)
 .gemini/
+
+# Security
+*.key
+*.pem
+secrets.yaml
+*.env
