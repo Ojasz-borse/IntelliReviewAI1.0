@@ -1,0 +1,9 @@
+mcp
+httpx
+pydantic
+python-dotenv
+google-generativeai
+gTTS
+fastapi
+uvicorn
+python-multipart

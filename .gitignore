@@ -1,0 +1,54 @@
+# Dependencies
+node_modules/
+.pnp/
+.pnp.js
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+mandi-mcp/.env
+
+# IDE and editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+pip-log.txt
+
+# OS generated
+.DS_Store
+Thumbs.db
+*.log
+
+# Debug files
+debug*.txt
+output.txt
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Firebase
+.firebase/
+firebase-debug.log
+
+# Gemini brain artifacts (local only)
+.gemini/
