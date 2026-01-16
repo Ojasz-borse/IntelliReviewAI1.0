@@ -4,6 +4,8 @@ from fastapi.responses import ORJSONResponse
 from typing import Optional, List, Dict
 import os
 import csv
+import json
+import random
 from datetime import datetime, timedelta
 from pathlib import Path
 from dotenv import load_dotenv
@@ -34,7 +36,7 @@ app.add_middleware(
 # =============================================================================
 FILTER_DATA: Dict = {}  # { District: { Market: [Crops] } }
 HISTORY_CACHE: Dict = {}  # { (crop_lower, market_lower): [sorted_records] }
-CSV_ROW_DATA: List = []  # All parsed CSV rows for price lookups
+AI_GENERATED_CACHE: Dict = {}  # Cache for AI-generated data to avoid repeated calls
 
 def get_csv_path() -> Path:
     """Returns the path to the CSV file."""
@@ -50,7 +52,7 @@ def load_all_data_at_startup():
     Pre-loads ALL CSV data into memory for instant responses.
     Called once at module import.
     """
-    global FILTER_DATA, HISTORY_CACHE, CSV_ROW_DATA
+    global FILTER_DATA, HISTORY_CACHE
     
     csv_path = get_csv_path()
     
@@ -166,6 +168,138 @@ def load_all_data_at_startup():
 load_all_data_at_startup()
 
 # =============================================================================
+# GEMINI AI DATA GENERATION FOR MISSING DATA
+# =============================================================================
+
+async def generate_ai_history_data(crop: str, market: str, days: int = 30) -> List[Dict]:
+    """
+    Uses Gemini AI to generate realistic historical price data when CSV data is missing.
+    This ensures the dashboard always shows meaningful charts.
+    """
+    import google.generativeai as genai
+    
+    cache_key = f"history_{crop.lower()}_{market.lower()}_{days}"
+    if cache_key in AI_GENERATED_CACHE:
+        print(f"Using cached AI history for {crop}/{market}")
+        return AI_GENERATED_CACHE[cache_key]
+    
+    if not GEMINI_API_KEY:
+        print("No Gemini API key, generating synthetic data")
+        return generate_synthetic_history(crop, market, days)
+    
+    try:
+        genai.configure(api_key=GEMINI_API_KEY)
+        model = genai.GenerativeModel('gemini-2.0-flash')
+        
+        today = datetime.now()
+        start_date = today - timedelta(days=days)
+        
+        prompt = f"""Generate realistic historical market prices for '{crop}' in '{market}' market, Maharashtra, India.
+
+Generate data for the last {days} days (from {start_date.strftime('%Y-%m-%d')} to {today.strftime('%Y-%m-%d')}).
+
+Consider:
+- Seasonal variations for this crop in Maharashtra
+- Typical price ranges for this commodity in Indian agricultural markets
+- Natural price fluctuations (not constant)
+- Prices are in Rs/Quintal (100 kg)
+
+Return ONLY a valid JSON array with this format (no markdown, no explanation):
+[
+  {{"date": "2025-01-01", "open": 1500, "high": 1800, "low": 1400, "close": 1700}},
+  {{"date": "2025-01-02", "open": 1700, "high": 1900, "low": 1600, "close": 1800}}
+]
+
+Generate exactly {min(days, 30)} data points with realistic price variations."""
+
+        response = model.generate_content(prompt)
+        text = response.text.replace("```json", "").replace("```", "").strip()
+        
+        data = json.loads(text)
+        
+        # Validate and clean data
+        valid_data = []
+        for item in data:
+            if all(k in item for k in ['date', 'open', 'high', 'low', 'close']):
+                valid_data.append({
+                    "date": item['date'],
+                    "open": float(item['open']),
+                    "high": float(item['high']),
+                    "low": float(item['low']),
+                    "close": float(item['close']),
+                    "source": "AI Generated"
+                })
+        
+        if valid_data:
+            AI_GENERATED_CACHE[cache_key] = valid_data
+            print(f"Generated {len(valid_data)} AI history points for {crop}/{market}")
+            return valid_data
+            
+    except Exception as e:
+        print(f"AI History Generation Error: {e}")
+    
+    # Fallback to synthetic data
+    return generate_synthetic_history(crop, market, days)
+
+
+def generate_synthetic_history(crop: str, market: str, days: int = 30) -> List[Dict]:
+    """
+    Generates realistic synthetic historical data based on typical crop prices.
+    Used as fallback when both CSV and AI fail.
+    """
+    # Base prices for common crops (Rs/Quintal)
+    base_prices = {
+        "tomato": 1500,
+        "onion": 1200,
+        "potato": 1800,
+        "soybean": 4500,
+        "wheat": 2200,
+        "rice": 2500,
+        "maize": 1900,
+        "cotton": 6000,
+        "sugarcane": 3000,
+        "grapes": 5000,
+        "pomegranate": 4000,
+    }
+    
+    crop_lower = crop.lower()
+    base_price = base_prices.get(crop_lower, 2000)  # Default 2000 Rs/Quintal
+    
+    data = []
+    today = datetime.now()
+    
+    # Generate realistic price movements
+    current_price = base_price
+    for i in range(days):
+        date = today - timedelta(days=days - i - 1)
+        
+        # Add some realistic variation (±10%)
+        variation = random.uniform(-0.10, 0.10)
+        current_price = current_price * (1 + variation * 0.3)  # Smoothed variation
+        
+        # Keep within reasonable bounds (±30% of base)
+        current_price = max(base_price * 0.7, min(base_price * 1.3, current_price))
+        
+        # Generate OHLC with realistic spreads
+        spread = current_price * random.uniform(0.05, 0.15)
+        
+        open_price = current_price + random.uniform(-spread/2, spread/2)
+        close_price = current_price + random.uniform(-spread/2, spread/2)
+        high_price = max(open_price, close_price) + random.uniform(0, spread/2)
+        low_price = min(open_price, close_price) - random.uniform(0, spread/2)
+        
+        data.append({
+            "date": date.strftime("%Y-%m-%d"),
+            "open": round(low_price, 0),
+            "high": round(high_price, 0),
+            "low": round(low_price, 0),
+            "close": round(close_price, 0),
+            "source": "Synthetic"
+        })
+    
+    return data
+
+# =============================================================================
 # API ENDPOINTS
 # =============================================================================
 
@@ -189,8 +323,9 @@ async def get_historical_chart_data(
     days: int = 30
 ):
     """
-    Returns OHLC data from pre-cached data - instant response.
-    No file reads, pure in-memory lookup.
+    Returns OHLC data from pre-cached data.
+    If no data found, generates AI-powered realistic historical data.
+    NEVER returns empty - always provides meaningful chart data.
     """
     crop_lower = crop.lower()
     
@@ -199,7 +334,8 @@ async def get_historical_chart_data(
         cache_key = (crop_lower, mandi.lower())
         if cache_key in HISTORY_CACHE:
             records = HISTORY_CACHE[cache_key]
-            return records[-days:] if len(records) > days else records
+            if records:
+                return records[-days:] if len(records) > days else records
     
     # If no exact match, find best available market for this crop
     best_key = None
@@ -210,7 +346,6 @@ async def get_historical_chart_data(
     
     for key, records in HISTORY_CACHE.items():
         if key[0] == crop_lower:
-            # Prioritize preferred markets
             market_name = key[1]
             if market_name in preferred:
                 if len(records) > best_count:
@@ -222,9 +357,14 @@ async def get_historical_chart_data(
     
     if best_key and best_key in HISTORY_CACHE:
         records = HISTORY_CACHE[best_key]
-        return records[-days:] if len(records) > days else records
+        if records:
+            return records[-days:] if len(records) > days else records
     
-    return []
+    # ===== NO CSV DATA FOUND - USE AI GENERATION =====
+    print(f"No CSV data for {crop}/{mandi}, generating AI data...")
+    market_name = mandi or "Maharashtra"
+    ai_data = await generate_ai_history_data(crop, market_name, days)
+    return ai_data
 
 @app.get("/data")
 async def get_unified_data(
@@ -233,7 +373,10 @@ async def get_unified_data(
     crop: str = "Tomato", 
     market: Optional[str] = None
 ):
-    """Main endpoint for price, weather, and advice."""
+    """
+    Main endpoint for price, weather, and advice.
+    Always returns complete data - uses AI for missing values.
+    """
     # 1. Resolve Location / Market
     nearest_mandi = market
     lat, lon = 19.7515, 75.7139  # Default Maharashtra Center
@@ -255,7 +398,7 @@ async def get_unified_data(
         else:
             nearest_mandi = "Pune"  # Fallback
     
-    # 2. Fetch Prices
+    # 2. Fetch Prices (already has Gemini fallback in mandi_service.py)
     price_data = await get_mandi_prices(nearest_mandi, crop)
     
     # 3. Fetch Weather
