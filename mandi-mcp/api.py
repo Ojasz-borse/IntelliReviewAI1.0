@@ -18,6 +18,7 @@ from dotenv import load_dotenv
 from services.weather_service import get_weather
 from services.advice_service import generate_advice
 from services.tts_service import generate_marathi_speech
+from services.seed_service import get_seed_suggestions, get_all_available_crops, generate_seed_advice_text
 from translations import (
     DISTRICT_TRANSLATIONS, 
     COMMODITY_TRANSLATIONS, 
@@ -235,6 +236,33 @@ async def get_translations_endpoint():
     """Returns all Marathi translations for frontend use"""
     return get_all_translations()
 
+@app.get("/seeds")
+async def get_seeds(
+    crop: str,
+    district: Optional[str] = None,
+    language: str = "mr"
+):
+    """
+    Get seed variety suggestions for a specific crop
+    Returns varieties with recommendations and voice audio
+    """
+    # Get seed suggestions
+    suggestions = get_seed_suggestions(crop, district, language)
+    
+    # Generate voice advice for seeds
+    if suggestions.get("found"):
+        advice_text = generate_seed_advice_text(crop, district or "", language)
+        audio_base64 = await generate_marathi_speech(advice_text, GEMINI_API_KEY)
+        suggestions["advice_text"] = advice_text
+        suggestions["audio_base64"] = audio_base64
+    
+    return suggestions
+
+@app.get("/seeds/crops")
+async def get_available_seed_crops(language: str = "en"):
+    """Returns list of all crops with seed data available"""
+    return get_all_available_crops(language)
+
 @app.get("/history")
 async def get_historical_data(
     crop: str,
@@ -443,7 +471,29 @@ async def get_unified_data(
     # 3. Generate AI advice based on price and weather
     advice_text = await generate_advice(current_price, weather_data, GEMINI_API_KEY)
     
-    # 4. Generate voice audio
+    # 4. If no advice was generated, create a fallback advice in Marathi
+    crop_marathi = COMMODITY_TRANSLATIONS.get(crop, crop)
+    district_marathi = DISTRICT_TRANSLATIONS.get(district, district)
+    
+    if not advice_text or "उपलब्ध नाही" in advice_text or len(advice_text) < 20:
+        modal_price = current_price.get('modal_price_kg', 0)
+        rain_warning = weather_data.get('rain_next_3_days', False)
+        
+        advice_text = f"शेतकरी मित्रांनो, {district_marathi} मधील {crop_marathi} पिकाची सध्याची बाजारभाव माहिती. "
+        
+        if modal_price > 0:
+            advice_text += f"सध्याचा भाव प्रति किलो {modal_price} रुपये आहे. "
+        else:
+            advice_text += "आज बाजारात भाव स्थिर आहे. "
+        
+        if rain_warning:
+            advice_text += "पुढील तीन दिवसांत पावसाची शक्यता आहे, त्यामुळे पीक सुरक्षित ठेवा. "
+        else:
+            advice_text += "हवामान चांगले आहे. "
+        
+        advice_text += "बाजारभाव तपासून योग्य वेळी विक्री करा. शेतकरी मित्र सदैव तुमच्या सोबत आहे."
+    
+    # 5. Generate voice audio
     audio_base64 = await generate_marathi_speech(advice_text, GEMINI_API_KEY)
     
     return {

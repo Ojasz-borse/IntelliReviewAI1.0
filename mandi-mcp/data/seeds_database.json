@@ -1,0 +1,943 @@
+{
+    "seeds": {
+        "Wheat": {
+            "marathi_name": "गहू",
+            "varieties": [
+                {
+                    "name": "HD2967",
+                    "marathi_name": "एचडी२९६७",
+                    "quantity_per_acre_kg": 40,
+                    "season": "Rabi",
+                    "season_marathi": "रबी",
+                    "features": [
+                        "High yield variety",
+                        "Good disease resistance",
+                        "Preferred in Maharashtra"
+                    ],
+                    "features_marathi": [
+                        "उच्च उत्पादन",
+                        "रोग प्रतिरोधक",
+                        "महाराष्ट्रात पसंतीची"
+                    ],
+                    "price_range": "₹60-80/kg",
+                    "sowing_months": [
+                        "October",
+                        "November"
+                    ],
+                    "sowing_months_marathi": [
+                        "ऑक्टोबर",
+                        "नोव्हेंबर"
+                    ],
+                    "harvest_days": 120,
+                    "suitable_districts": [
+                        "Pune",
+                        "Ahmednagar",
+                        "Nashik",
+                        "Dhule",
+                        "Jalgaon"
+                    ]
+                },
+                {
+                    "name": "Lok1",
+                    "marathi_name": "लोक१",
+                    "quantity_per_acre_kg": 35,
+                    "season": "Rabi",
+                    "season_marathi": "रबी",
+                    "features": [
+                        "Drought tolerant",
+                        "Traditional variety",
+                        "Low water requirement"
+                    ],
+                    "features_marathi": [
+                        "दुष्काळ सहनशील",
+                        "पारंपारिक वाण",
+                        "कमी पाणी लागते"
+                    ],
+                    "price_range": "₹50-65/kg",
+                    "sowing_months": [
+                        "October",
+                        "November"
+                    ],
+                    "sowing_months_marathi": [
+                        "ऑक्टोबर",
+                        "नोव्हेंबर"
+                    ],
+                    "harvest_days": 115,
+                    "suitable_districts": [
+                        "Solapur",
+                        "Osmanabad",
+                        "Latur",
+                        "Beed"
+                    ]
+                },
+                {
+                    "name": "MACS6222",
+                    "marathi_name": "मॅक्स६२२२",
+                    "quantity_per_acre_kg": 38,
+                    "season": "Rabi",
+                    "season_marathi": "रबी",
+                    "features": [
+                        "Rust resistant",
+                        "High protein content",
+                        "Good chapati quality"
+                    ],
+                    "features_marathi": [
+                        "गंज प्रतिरोधक",
+                        "उच्च प्रथिने",
+                        "चांगली चपाती गुणवत्ता"
+                    ],
+                    "price_range": "₹65-85/kg",
+                    "sowing_months": [
+                        "October",
+                        "November"
+                    ],
+                    "sowing_months_marathi": [
+                        "ऑक्टोबर",
+                        "नोव्हेंबर"
+                    ],
+                    "harvest_days": 125,
+                    "suitable_districts": [
+                        "Nagpur",
+                        "Wardha",
+                        "Chandrapur"
+                    ]
+                }
+            ]
+        },
+        "Rice": {
+            "marathi_name": "तांदूळ/भात",
+            "varieties": [
+                {
+                    "name": "IR64",
+                    "marathi_name": "आयआर६४",
+                    "quantity_per_acre_kg": 30,
+                    "season": "Kharif",
+                    "season_marathi": "खरीप",
+                    "features": [
+                        "High productivity",
+                        "Good grain quality",
+                        "Farmer preferred"
+                    ],
+                    "features_marathi": [
+                        "उच्च उत्पादकता",
+                        "चांगली दाण्याची गुणवत्ता",
+                        "शेतकऱ्यांची पसंती"
+                    ],
+                    "price_range": "₹45-60/kg",
+                    "sowing_months": [
+                        "June",
+                        "July"
+                    ],
+                    "sowing_months_marathi": [
+                        "जून",
+                        "जुलै"
+                    ],
+                    "harvest_days": 130,
+                    "suitable_districts": [
+                        "Raigad",
+                        "Ratnagiri",
+                        "Sindhudurg",
+                        "Thane",
+                        "Palghar"
+                    ]
+                },
+                {
+                    "name": "Swarna",
+                    "marathi_name": "स्वर्णा",
+                    "quantity_per_acre_kg": 32,
+                    "season": "Kharif",
+                    "season_marathi": "खरीप",
+                    "features": [
+                        "Flood tolerant",
+                        "Long grain",
+                        "High yield"
+                    ],
+                    "features_marathi": [
+                        "पूर सहनशील",
+                        "लांब दाणे",
+                        "उच्च उत्पादन"
+                    ],
+                    "price_range": "₹50-70/kg",
+                    "sowing_months": [
+                        "June",
+                        "July"
+                    ],
+                    "sowing_months_marathi": [
+                        "जून",
+                        "जुलै"
+                    ],
+                    "harvest_days": 140,
+                    "suitable_districts": [
+                        "Gondia",
+                        "Bhandara",
+                        "Gadchiroli",
+                        "Chandrapur"
+                    ]
+                },
+                {
+                    "name": "Kolam",
+                    "marathi_name": "कोलम",
+                    "quantity_per_acre_kg": 28,
+                    "season": "Kharif",
+                    "season_marathi": "खरीप",
+                    "features": [
+                        "Premium variety",
+                        "Aromatic",
+                        "Export quality"
+                    ],
+                    "features_marathi": [
+                        "प्रीमियम वाण",
+                        "सुगंधित",
+                        "निर्यात गुणवत्ता"
+                    ],
+                    "price_range": "₹80-120/kg",
+                    "sowing_months": [
+                        "June",
+                        "July"
+                    ],
+                    "sowing_months_marathi": [
+                        "जून",
+                        "जुलै"
+                    ],
+                    "harvest_days": 135,
+                    "suitable_districts": [
+                        "Nagpur",
+                        "Bhandara",
+                        "Gondia"
+                    ]
+                }
+            ]
+        },
+        "Cotton": {
+            "marathi_name": "कापूस",
+            "varieties": [
+                {
+                    "name": "BtCotton (Bollgard II)",
+                    "marathi_name": "बीटी कापूस (बोलगार्ड II)",
+                    "quantity_per_acre_kg": 2,
+                    "season": "Kharif",
+                    "season_marathi": "खरीप",
+                    "features": [
+                        "Pest resistant",
+                        "High boll formation",
+                        "Popular hybrid"
+                    ],
+                    "features_marathi": [
+                        "कीड प्रतिरोधक",
+                        "उच्च बोंड निर्मिती",
+                        "लोकप्रिय संकरित"
+                    ],
+                    "price_range": "₹800-1200/packet (450g)",
+                    "sowing_months": [
+                        "May",
+                        "June"
+                    ],
+                    "sowing_months_marathi": [
+                        "मे",
+                        "जून"
+                    ],
+                    "harvest_days": 160,
+                    "suitable_districts": [
+                        "Yavatmal",
+                        "Wardha",
+                        "Amravati",
+                        "Akola",
+                        "Washim"
+                    ]
+                },
+                {
+                    "name": "Ankur 3028",
+                    "marathi_name": "अंकुर ३०२८",
+                    "quantity_per_acre_kg": 2,
+                    "season": "Kharif",
+                    "season_marathi": "खरीप",
+                    "features": [
+                        "High ginning percentage",
+                        "Dense boll",
+                        "Drought tolerant"
+                    ],
+                    "features_marathi": [
+                        "उच्च जिनिंग टक्केवारी",
+                        "दाट बोंड",
+                        "दुष्काळ सहनशील"
+                    ],
+                    "price_range": "₹750-1000/packet",
+                    "sowing_months": [
+                        "May",
+                        "June"
+                    ],
+                    "sowing_months_marathi": [
+                        "मे",
+                        "जून"
+                    ],
+                    "harvest_days": 155,
+                    "suitable_districts": [
+                        "Nanded",
+                        "Parbhani",
+                        "Hingoli",
+                        "Jalna"
+                    ]
+                }
+            ]
+        },
+        "Soybean": {
+            "marathi_name": "सोयाबीन",
+            "varieties": [
+                {
+                    "name": "JS335",
+                    "marathi_name": "जेएस३३५",
+                    "quantity_per_acre_kg": 30,
+                    "season": "Kharif",
+                    "season_marathi": "खरीप",
+                    "features": [
+                        "High oil content",
+                        "Early maturity",
+                        "Stable yield"
+                    ],
+                    "features_marathi": [
+                        "उच्च तेल प्रमाण",
+                        "लवकर पक्वता",
+                        "स्थिर उत्पादन"
+                    ],
+                    "price_range": "₹80-120/kg",
+                    "sowing_months": [
+                        "June",
+                        "July"
+                    ],
+                    "sowing_months_marathi": [
+                        "जून",
+                        "जुलै"
+                    ],
+                    "harvest_days": 95,
+                    "suitable_districts": [
+                        "Latur",
+                        "Nanded",
+                        "Parbhani",
+                        "Washim",
+                        "Buldhana"
+                    ]
+                },
+                {
+                    "name": "JS9305",
+                    "marathi_name": "जेएस९३०५",
+                    "quantity_per_acre_kg": 28,
+                    "season": "Kharif",
+                    "season_marathi": "खरीप",
+                    "features": [
+                        "High yield",
+                        "Pod shattering resistant",
+                        "Wide adaptability"
+                    ],
+                    "features_marathi": [
+                        "उच्च उत्पादन",
+                        "शेंगा फुटण्यास प्रतिरोधक",
+                        "विस्तृत अनुकूलता"
+                    ],
+                    "price_range": "₹90-130/kg",
+                    "sowing_months": [
+                        "June",
+                        "July"
+                    ],
+                    "sowing_months_marathi": [
+                        "जून",
+                        "जुलै"
+                    ],
+                    "harvest_days": 100,
+                    "suitable_districts": [
+                        "Amravati",
+                        "Akola",
+                        "Yavatmal",
+                        "Nagpur"
+                    ]
+                }
+            ]
+        },
+        "Maize": {
+            "marathi_name": "मका",
+            "varieties": [
+                {
+                    "name": "DKC9108",
+                    "marathi_name": "डीकेसी९१०८",
+                    "quantity_per_acre_kg": 10,
+                    "season": "Kharif",
+                    "season_marathi": "खरीप",
+                    "features": [
+                        "Hybrid variety",
+                        "High biomass",
+                        "Uniform cob size"
+                    ],
+                    "features_marathi": [
+                        "संकरित वाण",
+                        "उच्च जैवपदार्थ",
+                        "एकसमान कणीस"
+                    ],
+                    "price_range": "₹350-450/kg",
+                    "sowing_months": [
+                        "June",
+                        "July"
+                    ],
+                    "sowing_months_marathi": [
+                        "जून",
+                        "जुलै"
+                    ],
+                    "harvest_days": 110,
+                    "suitable_districts": [
+                        "Aurangabad",
+                        "Jalna",
+                        "Ahmednagar",
+                        "Nashik"
+                    ]
+                },
+                {
+                    "name": "Pioneer 3396",
+                    "marathi_name": "पायोनियर ३३९६",
+                    "quantity_per_acre_kg": 8,
+                    "season": "Kharif",
+                    "season_marathi": "खरीप",
+                    "features": [
+                        "Early maturity",
+                        "Stay green",
+                        "Excellent standability"
+                    ],
+                    "features_marathi": [
+                        "लवकर पक्वता",
+                        "हिरवे राहते",
+                        "उत्कृष्ट उभेपणा"
+                    ],
+                    "price_range": "₹400-500/kg",
+                    "sowing_months": [
+                        "June",
+                        "July"
+                    ],
+                    "sowing_months_marathi": [
+                        "जून",
+                        "जुलै"
+                    ],
+                    "harvest_days": 100,
+                    "suitable_districts": [
+                        "Dhule",
+                        "Nandurbar",
+                        "Jalgaon"
+                    ]
+                }
+            ]
+        },
+        "Gram": {
+            "marathi_name": "हरभरा",
+            "varieties": [
+                {
+                    "name": "JG11",
+                    "marathi_name": "जेजी११",
+                    "quantity_per_acre_kg": 20,
+                    "season": "Rabi",
+                    "season_marathi": "रबी",
+                    "features": [
+                        "Good protein content",
+                        "Disease resistant",
+                        "Farmer trusted"
+                    ],
+                    "features_marathi": [
+                        "चांगले प्रथिने प्रमाण",
+                        "रोग प्रतिरोधक",
+                        "शेतकऱ्यांचा विश्वास"
+                    ],
+                    "price_range": "₹100-140/kg",
+                    "sowing_months": [
+                        "October",
+                        "November"
+                    ],
+                    "sowing_months_marathi": [
+                        "ऑक्टोबर",
+                        "नोव्हेंबर"
+                    ],
+                    "harvest_days": 110,
+                    "suitable_districts": [
+                        "Latur",
+                        "Osmanabad",
+                        "Beed",
+                        "Nanded"
+                    ]
+                },
+                {
+                    "name": "Vijay",
+                    "marathi_name": "विजय",
+                    "quantity_per_acre_kg": 22,
+                    "season": "Rabi",
+                    "season_marathi": "रबी",
+                    "features": [
+                        "Wilt resistant",
+                        "Bold grain",
+                        "High market value"
+                    ],
+                    "features_marathi": [
+                        "मर रोग प्रतिरोधक",
+                        "मोठे दाणे",
+                        "उच्च बाजार मूल्य"
+                    ],
+                    "price_range": "₹110-150/kg",
+                    "sowing_months": [
+                        "October",
+                        "November"
+                    ],
+                    "sowing_months_marathi": [
+                        "ऑक्टोबर",
+                        "नोव्हेंबर"
+                    ],
+                    "harvest_days": 115,
+                    "suitable_districts": [
+                        "Solapur",
+                        "Ahmednagar",
+                        "Pune"
+                    ]
+                }
+            ]
+        },
+        "Onion": {
+            "marathi_name": "कांदा",
+            "varieties": [
+                {
+                    "name": "N-53",
+                    "marathi_name": "एन-५३",
+                    "quantity_per_acre_kg": 4,
+                    "season": "Rabi/Kharif",
+                    "season_marathi": "रबी/खरीप",
+                    "features": [
+                        "Red variety",
+                        "Long storage life",
+                        "High pungency"
+                    ],
+                    "features_marathi": [
+                        "लाल वाण",
+                        "दीर्घ साठवण",
+                        "तीक्ष्ण चव"
+                    ],
+                    "price_range": "₹1200-1800/kg",
+                    "sowing_months": [
+                        "October",
+                        "November",
+                        "June"
+                    ],
+                    "sowing_months_marathi": [
+                        "ऑक्टोबर",
+                        "नोव्हेंबर",
+                        "जून"
+                    ],
+                    "harvest_days": 120,
+                    "suitable_districts": [
+                        "Nashik",
+                        "Ahmednagar",
+                        "Pune",
+                        "Solapur"
+                    ]
+                },
+                {
+                    "name": "Agrifound Light Red",
+                    "marathi_name": "अॅग्रीफाऊंड लाइट रेड",
+                    "quantity_per_acre_kg": 4,
+                    "season": "Rabi",
+                    "season_marathi": "रबी",
+                    "features": [
+                        "Export quality",
+                        "Uniform bulbs",
+                        "Good keeping quality"
+                    ],
+                    "features_marathi": [
+                        "निर्यात गुणवत्ता",
+                        "एकसमान कांदे",
+                        "चांगली साठवण गुणवत्ता"
+                    ],
+                    "price_range": "₹1500-2000/kg",
+                    "sowing_months": [
+                        "October",
+                        "November"
+                    ],
+                    "sowing_months_marathi": [
+                        "ऑक्टोबर",
+                        "नोव्हेंबर"
+                    ],
+                    "harvest_days": 125,
+                    "suitable_districts": [
+                        "Nashik",
+                        "Pune",
+                        "Satara"
+                    ]
+                }
+            ]
+        },
+        "Tomato": {
+            "marathi_name": "टोमॅटो",
+            "varieties": [
+                {
+                    "name": "Pusa Ruby",
+                    "marathi_name": "पुसा रुबी",
+                    "quantity_per_acre_kg": 0.2,
+                    "season": "Rabi/Summer",
+                    "season_marathi": "रबी/उन्हाळा",
+                    "features": [
+                        "Determinate type",
+                        "High yield",
+                        "Suitable for processing"
+                    ],
+                    "features_marathi": [
+                        "निश्चित वाढ",
+                        "उच्च उत्पादन",
+                        "प्रक्रियेसाठी योग्य"
+                    ],
+                    "price_range": "₹800-1200/100g",
+                    "sowing_months": [
+                        "September",
+                        "October",
+                        "January"
+                    ],
+                    "sowing_months_marathi": [
+                        "सप्टेंबर",
+                        "ऑक्टोबर",
+                        "जानेवारी"
+                    ],
+                    "harvest_days": 75,
+                    "suitable_districts": [
+                        "Pune",
+                        "Nashik",
+                        "Satara",
+                        "Ahmednagar"
+                    ]
+                },
+                {
+                    "name": "Arka Rakshak",
+                    "marathi_name": "अर्का रक्षक",
+                    "quantity_per_acre_kg": 0.15,
+                    "season": "All seasons",
+                    "season_marathi": "सर्व ऋतू",
+                    "features": [
+                        "Disease resistant",
+                        "Long harvest period",
+                        "Premium variety"
+                    ],
+                    "features_marathi": [
+                        "रोग प्रतिरोधक",
+                        "दीर्घ काढणी कालावधी",
+                        "प्रीमियम वाण"
+                    ],
+                    "price_range": "₹1500-2200/100g",
+                    "sowing_months": [
+                        "September",
+                        "October",
+                        "February"
+                    ],
+                    "sowing_months_marathi": [
+                        "सप्टेंबर",
+                        "ऑक्टोबर",
+                        "फेब्रुवारी"
+                    ],
+                    "harvest_days": 70,
+                    "suitable_districts": [
+                        "Pune",
+                        "Nashik",
+                        "Satara",
+                        "Sangli"
+                    ]
+                }
+            ]
+        },
+        "Sugarcane": {
+            "marathi_name": "ऊस",
+            "varieties": [
+                {
+                    "name": "Co 86032",
+                    "marathi_name": "को ८६०३२",
+                    "quantity_per_acre_sets": 25000,
+                    "season": "Adsali/Suru",
+                    "season_marathi": "आडसाली/सुरू",
+                    "features": [
+                        "High sucrose",
+                        "Red rot resistant",
+                        "Good ratoon"
+                    ],
+                    "features_marathi": [
+                        "उच्च साखर",
+                        "तांबेरा प्रतिरोधक",
+                        "चांगली खोडवा"
+                    ],
+                    "price_range": "₹150-200/100 sets",
+                    "sowing_months": [
+                        "October",
+                        "January",
+                        "February"
+                    ],
+                    "sowing_months_marathi": [
+                        "ऑक्टोबर",
+                        "जानेवारी",
+                        "फेब्रुवारी"
+                    ],
+                    "harvest_days": 360,
+                    "suitable_districts": [
+                        "Kolhapur",
+                        "Sangli",
+                        "Satara",
+                        "Solapur",
+                        "Ahmednagar"
+                    ]
+                },
+                {
+                    "name": "VSI 08005",
+                    "marathi_name": "व्हीएसआय ०८००५",
+                    "quantity_per_acre_sets": 24000,
+                    "season": "Suru/Pre-seasonal",
+                    "season_marathi": "सुरू/पूर्व हंगामी",
+                    "features": [
+                        "Early maturity",
+                        "High tonnage",
+                        "Drought tolerant"
+                    ],
+                    "features_marathi": [
+                        "लवकर पक्वता",
+                        "उच्च टनेज",
+                        "दुष्काळ सहनशील"
+                    ],
+                    "price_range": "₹180-250/100 sets",
+                    "sowing_months": [
+                        "October",
+                        "November",
+                        "December"
+                    ],
+                    "sowing_months_marathi": [
+                        "ऑक्टोबर",
+                        "नोव्हेंबर",
+                        "डिसेंबर"
+                    ],
+                    "harvest_days": 330,
+                    "suitable_districts": [
+                        "Pune",
+                        "Ahmednagar",
+                        "Nashik",
+                        "Solapur"
+                    ]
+                }
+            ]
+        },
+        "Jowar": {
+            "marathi_name": "ज्वारी",
+            "varieties": [
+                {
+                    "name": "Maldandi (M35-1)",
+                    "marathi_name": "माळदांडी (एम३५-१)",
+                    "quantity_per_acre_kg": 5,
+                    "season": "Rabi",
+                    "season_marathi": "रबी",
+                    "features": [
+                        "Dual purpose",
+                        "Sweet stalk",
+                        "Traditional variety"
+                    ],
+                    "features_marathi": [
+                        "दुहेरी उपयोग",
+                        "गोड काडी",
+                        "पारंपारिक वाण"
+                    ],
+                    "price_range": "₹80-120/kg",
+                    "sowing_months": [
+                        "September",
+                        "October"
+                    ],
+                    "sowing_months_marathi": [
+                        "सप्टेंबर",
+                        "ऑक्टोबर"
+                    ],
+                    "harvest_days": 120,
+                    "suitable_districts": [
+                        "Solapur",
+                        "Osmanabad",
+                        "Latur",
+                        "Beed"
+                    ]
+                },
+                {
+                    "name": "CSH-16",
+                    "marathi_name": "सीएसएच-१६",
+                    "quantity_per_acre_kg": 4,
+                    "season": "Kharif",
+                    "season_marathi": "खरीप",
+                    "features": [
+                        "Hybrid",
+                        "High fodder yield",
+                        "Shoot fly tolerant"
+                    ],
+                    "features_marathi": [
+                        "संकरित",
+                        "उच्च चारा उत्पादन",
+                        "खोडमाशी सहनशील"
+                    ],
+                    "price_range": "₹150-200/kg",
+                    "sowing_months": [
+                        "June",
+                        "July"
+                    ],
+                    "sowing_months_marathi": [
+                        "जून",
+                        "जुलै"
+                    ],
+                    "harvest_days": 110,
+                    "suitable_districts": [
+                        "Ahmednagar",
+                        "Pune",
+                        "Aurangabad"
+                    ]
+                }
+            ]
+        },
+        "Bajra": {
+            "marathi_name": "बाजरी",
+            "varieties": [
+                {
+                    "name": "Shraddha",
+                    "marathi_name": "श्रद्धा",
+                    "quantity_per_acre_kg": 2,
+                    "season": "Kharif",
+                    "season_marathi": "खरीप",
+                    "features": [
+                        "Downy mildew resistant",
+                        "Bold grain",
+                        "Good fodder"
+                    ],
+                    "features_marathi": [
+                        "केवडा प्रतिरोधक",
+                        "मोठे दाणे",
+                        "चांगला चारा"
+                    ],
+                    "price_range": "₹200-280/kg",
+                    "sowing_months": [
+                        "June",
+                        "July"
+                    ],
+                    "sowing_months_marathi": [
+                        "जून",
+                        "जुलै"
+                    ],
+                    "harvest_days": 85,
+                    "suitable_districts": [
+                        "Ahmednagar",
+                        "Dhule",
+                        "Nashik",
+                        "Jalgaon"
+                    ]
+                },
+                {
+                    "name": "ICTP 8203",
+                    "marathi_name": "आयसीटीपी ८२०३",
+                    "quantity_per_acre_kg": 2,
+                    "season": "Kharif",
+                    "season_marathi": "खरीप",
+                    "features": [
+                        "Early maturity",
+                        "Dual purpose",
+                        "Drought escape"
+                    ],
+                    "features_marathi": [
+                        "लवकर पक्वता",
+                        "दुहेरी उपयोग",
+                        "दुष्काळ निवारक"
+                    ],
+                    "price_range": "₹180-250/kg",
+                    "sowing_months": [
+                        "June",
+                        "July"
+                    ],
+                    "sowing_months_marathi": [
+                        "जून",
+                        "जुलै"
+                    ],
+                    "harvest_days": 75,
+                    "suitable_districts": [
+                        "Solapur",
+                        "Osmanabad",
+                        "Beed"
+                    ]
+                }
+            ]
+        },
+        "Groundnut": {
+            "marathi_name": "भुईमूग/शेंगदाणे",
+            "varieties": [
+                {
+                    "name": "TAG-24",
+                    "marathi_name": "टीएजी-२४",
+                    "quantity_per_acre_kg": 50,
+                    "season": "Kharif/Summer",
+                    "season_marathi": "खरीप/उन्हाळा",
+                    "features": [
+                        "Bunch type",
+                        "High oil content",
+                        "Early maturity"
+                    ],
+                    "features_marathi": [
+                        "गुच्छ प्रकार",
+                        "उच्च तेल प्रमाण",
+                        "लवकर पक्वता"
+                    ],
+                    "price_range": "₹80-110/kg",
+                    "sowing_months": [
+                        "June",
+                        "July",
+                        "January"
+                    ],
+                    "sowing_months_marathi": [
+                        "जून",
+                        "जुलै",
+                        "जानेवारी"
+                    ],
+                    "harvest_days": 105,
+                    "suitable_districts": [
+                        "Kolhapur",
+                        "Satara",
+                        "Sangli",
+                        "Solapur"
+                    ]
+                }
+            ]
+        },
+        "Turmeric": {
+            "marathi_name": "हळद",
+            "varieties": [
+                {
+                    "name": "Salem",
+                    "marathi_name": "सालेम",
+                    "quantity_per_acre_kg": 1000,
+                    "season": "Kharif",
+                    "season_marathi": "खरीप",
+                    "features": [
+                        "High curcumin",
+                        "Long fingers",
+                        "Export quality"
+                    ],
+                    "features_marathi": [
+                        "उच्च कुरकुमिन",
+                        "लांब बोटे",
+                        "निर्यात गुणवत्ता"
+                    ],
+                    "price_range": "₹30-50/kg (rhizome)",
+                    "sowing_months": [
+                        "May",
+                        "June"
+                    ],
+                    "sowing_months_marathi": [
+                        "मे",
+                        "जून"
+                    ],
+                    "harvest_days": 270,
+                    "suitable_districts": [
+                        "Sangli",
+                        "Satara",
+                        "Hingoli",
+                        "Nanded"
+                    ]
+                }
+            ]
+        }
+    },
+    "metadata": {
+        "version": "1.0",
+        "last_updated": "2026-01-17",
+        "source": "Maharashtra Agricultural Universities & Krishi Vigyan Kendras",
+        "note": "Prices are indicative and may vary by location and season"
+    }
+}

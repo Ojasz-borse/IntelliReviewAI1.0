@@ -1,0 +1,22 @@
+crop    ,seed_variety ,quantity_per_acre ,season ,notes
+Wheat   ,HD2967       ,               40 ,Rabi   ,High yield variety
+Wheat   ,HD2967       ,               40 ,Rabi   ,Good disease resistance
+Wheat   ,HD2967       ,               40 ,Rabi   ,Preferred in Maharashtra
+Wheat   ,Lok1         ,               35 ,Rabi   ,Drought tolerant
+Wheat   ,Lok1         ,               35 ,Rabi   ,Traditional variety
+Rice    ,IR64         ,               30 ,Kharif ,High productivity
+Rice    ,IR64         ,               30 ,Kharif ,Good grain quality
+Rice    ,IR64         ,               30 ,Kharif ,Farmer preferred
+Rice    ,Swarna       ,               32 ,Kharif ,Flood tolerant
+Cotton  ,BtCotton     ,                2 ,Kharif ,Pest resistant
+Cotton  ,BtCotton     ,                2 ,Kharif ,High boll formation
+Cotton  ,BtCotton     ,                2 ,Kharif ,Popular hybrid
+Soybean ,JS335        ,               30 ,Kharif ,High oil content
+Soybean ,JS335        ,               30 ,Kharif ,Early maturity
+Soybean ,JS335        ,               30 ,Kharif ,Stable yield
+Maize   ,DKC9108      ,               10 ,Kharif ,Hybrid variety
+Maize   ,DKC9108      ,               10 ,Kharif ,High biomass
+Maize   ,DKC9108      ,               10 ,Kharif ,Uniform cob size
+Gram    ,JG11         ,               20 ,Rabi   ,Good protein content
+Gram    ,JG11         ,               20 ,Rabi   ,Disease resistant
+Gram    ,JG11         ,               20 ,Rabi   ,Farmer trusted

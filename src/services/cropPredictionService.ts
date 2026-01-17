@@ -3,9 +3,7 @@
  * Integrates with the ML API for crop predictions with fallback to local dataset
  */
 
-// API Configuration
-const API_URL = "http://localhost:8000";
-const API_TIMEOUT = 15000;
+import { API_URL, API_TIMEOUT } from '../config';
 
 // Types
 export interface CropPrediction {

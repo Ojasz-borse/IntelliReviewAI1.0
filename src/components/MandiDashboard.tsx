@@ -5,8 +5,8 @@ import { Sprout, CloudRain, TrendingUp, TrendingDown, Sun, Languages, Volume2, R
 import { useLanguage, LanguageProvider } from '../contexts/LanguageContext';
 import CropPredictionModal from './CropPredictionModal';
 import WeatherForecastModal from './WeatherForecastModal';
-
-const API_URL = "http://127.0.0.1:8000";
+import SeedSuggestionModal from './SeedSuggestionModal';
+import { API_URL } from '../config';
 
 // Fallback filter data - All Maharashtra districts with markets
 const FALLBACK_FILTERS: any = {
@@ -412,6 +412,7 @@ const MandiDashboardContent: React.FC = () => {
     const [showAISallagar, setShowAISallagar] = useState(false);
     const [showCropPrediction, setShowCropPrediction] = useState(false);
     const [showWeatherForecast, setShowWeatherForecast] = useState(false);
+    const [showSeedSuggestion, setShowSeedSuggestion] = useState(false);
 
     // Load filters from API
     useEffect(() => {
@@ -548,7 +549,7 @@ const MandiDashboardContent: React.FC = () => {
     const getDistrictName = (district: string) => language === 'mr' ? (DEFAULT_DISTRICT_TRANSLATIONS[district] || district) : district;
 
     // Feature handlers
-    const handleSeedSuggestion = () => alert(language === 'mr' ? 'बीज सूचना लवकरच येत आहे!' : 'Seed suggestions coming soon!');
+    const handleSeedSuggestion = () => setShowSeedSuggestion(true);
     const handleCropPrediction = () => setShowCropPrediction(true);
     const handleWeatherForecast = () => setShowWeatherForecast(true);
 
@@ -715,8 +716,8 @@ const MandiDashboardContent: React.FC = () => {
                             </h3>
                             <FeatureCard
                                 icon={<Leaf className="w-5 h-5 text-green-600" />}
-                                title={language === 'mr' ? 'बीज सूचना' : 'Seed Suggestions'}
-                                desc={language === 'mr' ? 'सर्वोत्तम बीज शोधा' : 'Find best seeds'}
+                                title={t('features.seed')}
+                                desc={t('features.seed.desc')}
                                 onClick={handleSeedSuggestion}
                                 color="bg-green-50 hover:bg-green-100 text-green-800"
                             />
@@ -826,6 +827,14 @@ const MandiDashboardContent: React.FC = () => {
                 onClose={() => setShowWeatherForecast(false)}
                 language={language}
                 district={selectedDistrict}
+            />
+
+            {/* Seed Suggestion Dashboard Modal */}
+            <SeedSuggestionModal
+                isOpen={showSeedSuggestion}
+                onClose={() => setShowSeedSuggestion(false)}
+                initialCrop={selectedCrop}
+                initialDistrict={selectedDistrict}
             />
         </div>
     );
