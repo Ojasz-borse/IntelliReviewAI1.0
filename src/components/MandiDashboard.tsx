@@ -7,17 +7,133 @@ import CropPredictionModal from './CropPredictionModal';
 
 const API_URL = "http://127.0.0.1:8000";
 
-// Fallback filter data
+// Fallback filter data - All Maharashtra districts with markets
 const FALLBACK_FILTERS: any = {
     "Ahmednagar": {
+        "Ahmednagar": ["Tomato", "Onion", "Soybean", "Wheat", "Pomegranate", "Maize"],
         "Rahata": ["Tomato", "Onion", "Soybean", "Wheat", "Pomegranate"],
         "Kopargaon": ["Tomato", "Onion", "Soybean", "Maize"],
+        "Shrirampur": ["Onion", "Wheat", "Bajra"],
+        "Sangamner": ["Tomato", "Onion", "Pomegranate"],
+    },
+    "Akola": {
+        "Akola": ["Soybean", "Cotton", "Wheat", "Gram", "Onion"],
+        "Akot": ["Soybean", "Cotton", "Gram"],
+    },
+    "Amravati": {
+        "Amravati": ["Soybean", "Cotton", "Wheat", "Orange", "Gram"],
+        "Achalpur": ["Soybean", "Cotton", "Gram"],
+    },
+    "Aurangabad": {
+        "Aurangabad": ["Soybean", "Cotton", "Maize", "Bajra", "Jowar"],
+        "Paithan": ["Soybean", "Cotton", "Maize"],
+    },
+    "Beed": {
+        "Beed": ["Soybean", "Cotton", "Jowar", "Bajra", "Wheat"],
+        "Ambejogai": ["Soybean", "Cotton", "Jowar"],
+    },
+    "Bhandara": {
+        "Bhandara": ["Rice", "Wheat", "Soybean", "Gram"],
+    },
+    "Buldhana": {
+        "Buldhana": ["Soybean", "Cotton", "Wheat", "Gram", "Onion"],
+        "Khamgaon": ["Soybean", "Cotton", "Gram"],
+    },
+    "Chandrapur": {
+        "Chandrapur": ["Rice", "Soybean", "Cotton", "Wheat"],
+    },
+    "Dhule": {
+        "Dhule": ["Wheat", "Bajra", "Maize", "Onion", "Cotton"],
+    },
+    "Gadchiroli": {
+        "Gadchiroli": ["Rice", "Soybean", "Gram"],
+    },
+    "Gondia": {
+        "Gondia": ["Rice", "Wheat", "Soybean", "Gram"],
+    },
+    "Hingoli": {
+        "Hingoli": ["Soybean", "Cotton", "Jowar", "Bajra"],
+    },
+    "Jalgaon": {
+        "Jalgaon": ["Banana", "Cotton", "Maize", "Wheat", "Onion"],
+        "Bhusawal": ["Banana", "Cotton", "Wheat"],
+    },
+    "Jalna": {
+        "Jalna": ["Soybean", "Cotton", "Maize", "Bajra", "Mosambi"],
+    },
+    "Kolhapur": {
+        "Kolhapur": ["Sugarcane", "Rice", "Groundnut", "Soybean", "Turmeric"],
+        "Ichalkaranji": ["Sugarcane", "Rice", "Groundnut"],
+    },
+    "Latur": {
+        "Latur": ["Soybean", "Gram", "Jowar", "Sugarcane", "Wheat"],
+    },
+    "Mumbai": {
+        "Mumbai": ["Tomato", "Onion", "Potato", "Banana", "Grapes"],
+    },
+    "Nagpur": {
+        "Nagpur": ["Orange", "Soybean", "Cotton", "Wheat", "Rice"],
+        "Kamptee": ["Orange", "Soybean", "Wheat"],
+    },
+    "Nanded": {
+        "Nanded": ["Soybean", "Cotton", "Sugarcane", "Turmeric", "Gram"],
+    },
+    "Nandurbar": {
+        "Nandurbar": ["Banana", "Cotton", "Wheat", "Maize"],
+    },
+    "Nashik": {
+        "Nashik": ["Onion", "Tomato", "Grapes", "Pomegranate", "Wheat"],
+        "Malegaon": ["Onion", "Grapes", "Pomegranate"],
+        "Yeola": ["Onion", "Wheat", "Bajra"],
+        "Pimpalgaon": ["Onion", "Grapes"],
+    },
+    "Osmanabad": {
+        "Osmanabad": ["Soybean", "Jowar", "Sugarcane", "Gram"],
+    },
+    "Parbhani": {
+        "Parbhani": ["Soybean", "Cotton", "Jowar", "Bajra", "Wheat"],
+    },
+    "Palghar": {
+        "Palghar": ["Rice", "Banana", "Coconut", "Mango"],
     },
     "Pune": {
         "Pune": ["Tomato", "Onion", "Potato", "Ginger", "Garlic"],
+        "Baramati": ["Sugarcane", "Grapes", "Onion", "Wheat"],
+        "Junnar": ["Tomato", "Onion", "Rice"],
+        "Shirur": ["Bajra", "Wheat", "Onion"],
     },
-    "Nashik": {
-        "Nashik": ["Onion", "Tomato", "Grapes", "Pomegranate"],
+    "Raigad": {
+        "Raigad": ["Rice", "Mango", "Coconut", "Cashew"],
+    },
+    "Ratnagiri": {
+        "Ratnagiri": ["Mango", "Coconut", "Cashew", "Rice"],
+    },
+    "Sangli": {
+        "Sangli": ["Grapes", "Sugarcane", "Turmeric", "Onion", "Soybean"],
+        "Miraj": ["Grapes", "Sugarcane", "Turmeric"],
+    },
+    "Satara": {
+        "Satara": ["Sugarcane", "Rice", "Potato", "Strawberry", "Tomato"],
+        "Karad": ["Sugarcane", "Rice", "Tomato"],
+    },
+    "Sindhudurg": {
+        "Sindhudurg": ["Mango", "Coconut", "Cashew", "Rice"],
+    },
+    "Solapur": {
+        "Solapur": ["Pomegranate", "Sugarcane", "Grapes", "Onion", "Jowar"],
+        "Pandharpur": ["Pomegranate", "Onion", "Jowar"],
+    },
+    "Thane": {
+        "Thane": ["Rice", "Vegetables", "Banana", "Coconut"],
+    },
+    "Wardha": {
+        "Wardha": ["Soybean", "Cotton", "Wheat", "Orange", "Gram"],
+    },
+    "Washim": {
+        "Washim": ["Soybean", "Cotton", "Wheat", "Gram"],
+    },
+    "Yavatmal": {
+        "Yavatmal": ["Cotton", "Soybean", "Gram", "Wheat", "Orange"],
     }
 };
 
@@ -101,16 +217,36 @@ interface DashboardData {
 
 // Fallback price data for common crops (prices in Rs/kg)
 const FALLBACK_PRICES: Record<string, { min: number; modal: number; max: number }> = {
+    // Vegetables
     "Tomato": { min: 18, modal: 25, max: 35 },
     "Onion": { min: 15, modal: 22, max: 30 },
     "Potato": { min: 12, modal: 18, max: 25 },
+    "Ginger": { min: 80, modal: 120, max: 160 },
+    "Garlic": { min: 100, modal: 140, max: 180 },
+    "Vegetables": { min: 20, modal: 30, max: 45 },
+    // Grains
     "Soybean": { min: 42, modal: 48, max: 55 },
     "Wheat": { min: 22, modal: 28, max: 35 },
     "Maize": { min: 16, modal: 22, max: 28 },
+    "Rice": { min: 28, modal: 35, max: 45 },
+    "Bajra": { min: 18, modal: 24, max: 32 },
+    "Jowar": { min: 20, modal: 28, max: 38 },
+    "Gram": { min: 45, modal: 55, max: 68 },
+    // Fruits
     "Pomegranate": { min: 60, modal: 85, max: 120 },
     "Grapes": { min: 45, modal: 65, max: 90 },
-    "Ginger": { min: 80, modal: 120, max: 160 },
-    "Garlic": { min: 100, modal: 140, max: 180 },
+    "Banana": { min: 25, modal: 35, max: 50 },
+    "Orange": { min: 40, modal: 55, max: 75 },
+    "Mango": { min: 50, modal: 80, max: 120 },
+    "Mosambi": { min: 35, modal: 50, max: 70 },
+    "Coconut": { min: 18, modal: 25, max: 35 },
+    "Cashew": { min: 600, modal: 800, max: 1000 },
+    "Strawberry": { min: 150, modal: 250, max: 400 },
+    // Cash Crops
+    "Cotton": { min: 55, modal: 65, max: 78 },
+    "Sugarcane": { min: 3, modal: 3.5, max: 4 },
+    "Turmeric": { min: 70, modal: 95, max: 130 },
+    "Groundnut": { min: 50, modal: 65, max: 85 },
 };
 
 // Generate fallback chart data (last 30 days)
