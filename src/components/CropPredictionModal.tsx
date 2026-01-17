@@ -333,13 +333,6 @@ const CropPredictionModal: React.FC<CropPredictionModalProps> = ({
                             {/* Results */}
                             {result && (
                                 <div className="mt-5 space-y-4">
-                                    {/* Fallback Notice */}
-                                    {result.isFromFallback && (
-                                        <div className="bg-amber-50 border border-amber-200 p-3 rounded-xl flex items-center gap-2">
-                                            <Info className="w-4 h-4 text-amber-600 flex-shrink-0" />
-                                            <span className="text-amber-700 text-xs">{t.fallbackNotice}</span>
-                                        </div>
-                                    )}
 
                                     {/* Weather Info */}
                                     {result.weather && (
@@ -467,8 +460,8 @@ const CropCard: React.FC<{
             <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden mb-2">
                 <div
                     className={`h-full rounded-full transition-all ${prediction.suitability_class === 'Very High' ? 'bg-green-500' :
-                            prediction.suitability_class === 'High' ? 'bg-emerald-500' :
-                                prediction.suitability_class === 'Medium' ? 'bg-amber-500' : 'bg-red-500'
+                        prediction.suitability_class === 'High' ? 'bg-emerald-500' :
+                            prediction.suitability_class === 'Medium' ? 'bg-amber-500' : 'bg-red-500'
                         }`}
                     style={{ width: `${prediction.confidence * 100}%` }}
                 />

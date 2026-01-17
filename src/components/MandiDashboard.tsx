@@ -443,17 +443,6 @@ const MandiDashboardContent: React.FC = () => {
                     </div>
                 </header>
 
-                {/* Error */}
-                {error && (
-                    <div className="mb-4 bg-red-50 border border-red-200 rounded-lg p-3 flex items-center gap-2">
-                        <AlertCircle className="w-4 h-4 text-red-500" />
-                        <span className="text-red-700 text-sm">{error}</span>
-                        <button onClick={loadDashboardData} className="ml-auto text-red-600 text-xs font-medium">
-                            {t('retry')}
-                        </button>
-                    </div>
-                )}
-
                 {/* Main Content - Two Columns */}
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-5">
                     {/* Left Column - Price & Features */}
