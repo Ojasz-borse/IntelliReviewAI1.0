@@ -345,7 +345,7 @@ const AISallagarModal: React.FC<{
                     value={question}
                     onChange={(e) => setQuestion(e.target.value)}
                     placeholder={t.placeholder}
-                    className="w-full border border-gray-200 rounded-xl p-3 text-sm mb-3 focus:outline-none focus:border-green-400"
+                    className="w-full border border-gray-200 rounded-xl p-3 text-sm text-gray-800 mb-3 focus:outline-none focus:border-green-400 bg-white"
                 />
                 <button
                     onClick={askQuestion}
