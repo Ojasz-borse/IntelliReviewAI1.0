@@ -1,0 +1,151 @@
+{
+  "alluvial": {
+    "name": "Alluvial Soil",
+    "ph_range": [
+      6.0,
+      8.0
+    ],
+    "water_retention": "medium",
+    "fertility": "high",
+    "suitable_crops": [
+      "wheat",
+      "rice",
+      "sugarcane",
+      "maize",
+      "pulses",
+      "vegetables"
+    ],
+    "regions": [
+      "Punjab",
+      "Uttar Pradesh",
+      "Bihar",
+      "West Bengal"
+    ]
+  },
+  "black": {
+    "name": "Black Soil (Regur)",
+    "ph_range": [
+      7.2,
+      8.5
+    ],
+    "water_retention": "high",
+    "fertility": "high",
+    "suitable_crops": [
+      "cotton",
+      "soybean",
+      "sugarcane",
+      "jowar",
+      "wheat",
+      "gram"
+    ],
+    "regions": [
+      "Maharashtra",
+      "Madhya Pradesh",
+      "Gujarat",
+      "Karnataka"
+    ]
+  },
+  "red": {
+    "name": "Red Soil",
+    "ph_range": [
+      5.5,
+      7.0
+    ],
+    "water_retention": "low",
+    "fertility": "medium",
+    "suitable_crops": [
+      "groundnut",
+      "millets",
+      "pulses",
+      "tobacco",
+      "oilseeds"
+    ],
+    "regions": [
+      "Tamil Nadu",
+      "Karnataka",
+      "Andhra Pradesh"
+    ]
+  },
+  "laterite": {
+    "name": "Laterite Soil",
+    "ph_range": [
+      5.0,
+      6.5
+    ],
+    "water_retention": "low",
+    "fertility": "low",
+    "suitable_crops": [
+      "tea",
+      "coffee",
+      "rubber",
+      "coconut",
+      "cashew"
+    ],
+    "regions": [
+      "Kerala",
+      "Karnataka",
+      "Tamil Nadu"
+    ]
+  },
+  "sandy": {
+    "name": "Sandy/Desert Soil",
+    "ph_range": [
+      7.0,
+      8.5
+    ],
+    "water_retention": "very_low",
+    "fertility": "low",
+    "suitable_crops": [
+      "millet",
+      "barley",
+      "dates",
+      "cumin",
+      "mustard"
+    ],
+    "regions": [
+      "Rajasthan",
+      "Gujarat"
+    ]
+  },
+  "mountain": {
+    "name": "Mountain Soil",
+    "ph_range": [
+      5.0,
+      6.5
+    ],
+    "water_retention": "medium",
+    "fertility": "medium",
+    "suitable_crops": [
+      "tea",
+      "fruits",
+      "spices",
+      "vegetables",
+      "maize"
+    ],
+    "regions": [
+      "Himachal Pradesh",
+      "Uttarakhand",
+      "Assam"
+    ]
+  },
+  "saline": {
+    "name": "Saline/Alkaline Soil",
+    "ph_range": [
+      8.0,
+      10.0
+    ],
+    "water_retention": "high",
+    "fertility": "low",
+    "suitable_crops": [
+      "barley",
+      "rice",
+      "dates",
+      "cotton"
+    ],
+    "regions": [
+      "Punjab",
+      "Rajasthan",
+      "Gujarat"
+    ]
+  }
+}

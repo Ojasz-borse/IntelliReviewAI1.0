@@ -1,0 +1,484 @@
+{
+  "Maharashtra": {
+    "Mumbai": {
+      "lat": 19.076,
+      "lon": 72.8777,
+      "climate": "tropical_wet"
+    },
+    "Pune": {
+      "lat": 18.5204,
+      "lon": 73.8567,
+      "climate": "semi_arid"
+    },
+    "Nagpur": {
+      "lat": 21.1458,
+      "lon": 79.0882,
+      "climate": "tropical_wet_dry"
+    },
+    "Nashik": {
+      "lat": 19.9975,
+      "lon": 73.7898,
+      "climate": "semi_arid"
+    },
+    "Kolhapur": {
+      "lat": 16.705,
+      "lon": 74.2433,
+      "climate": "tropical_wet"
+    },
+    "Ahmednagar": {
+      "lat": 19.0952,
+      "lon": 74.749,
+      "climate": "semi_arid"
+    },
+    "Solapur": {
+      "lat": 17.6599,
+      "lon": 75.9064,
+      "climate": "semi_arid"
+    },
+    "Sangli": {
+      "lat": 16.8524,
+      "lon": 74.5815,
+      "climate": "semi_arid"
+    },
+    "Satara": {
+      "lat": 17.6805,
+      "lon": 74.0183,
+      "climate": "tropical_wet"
+    },
+    "Aurangabad": {
+      "lat": 19.8762,
+      "lon": 75.3433,
+      "climate": "semi_arid"
+    },
+    "Jalgaon": {
+      "lat": 21.0077,
+      "lon": 75.5626,
+      "climate": "semi_arid"
+    },
+    "Latur": {
+      "lat": 18.4088,
+      "lon": 76.5604,
+      "climate": "semi_arid"
+    },
+    "Osmanabad": {
+      "lat": 18.186,
+      "lon": 76.041,
+      "climate": "semi_arid"
+    },
+    "Beed": {
+      "lat": 18.989,
+      "lon": 75.7601,
+      "climate": "semi_arid"
+    },
+    "Nanded": {
+      "lat": 19.1383,
+      "lon": 77.321,
+      "climate": "semi_arid"
+    },
+    "Akola": {
+      "lat": 20.7002,
+      "lon": 77.0082,
+      "climate": "semi_arid"
+    },
+    "Amravati": {
+      "lat": 20.9374,
+      "lon": 77.7796,
+      "climate": "tropical_wet_dry"
+    },
+    "Yavatmal": {
+      "lat": 20.3899,
+      "lon": 78.1307,
+      "climate": "semi_arid"
+    },
+    "Wardha": {
+      "lat": 20.7453,
+      "lon": 78.6022,
+      "climate": "tropical_wet_dry"
+    },
+    "Chandrapur": {
+      "lat": 19.9615,
+      "lon": 79.2961,
+      "climate": "tropical_wet_dry"
+    }
+  },
+  "Gujarat": {
+    "Ahmedabad": {
+      "lat": 23.0225,
+      "lon": 72.5714,
+      "climate": "semi_arid"
+    },
+    "Surat": {
+      "lat": 21.1702,
+      "lon": 72.8311,
+      "climate": "tropical_wet"
+    },
+    "Vadodara": {
+      "lat": 22.3072,
+      "lon": 73.1812,
+      "climate": "semi_arid"
+    },
+    "Rajkot": {
+      "lat": 22.3039,
+      "lon": 70.8022,
+      "climate": "semi_arid"
+    },
+    "Junagadh": {
+      "lat": 21.5222,
+      "lon": 70.4579,
+      "climate": "semi_arid"
+    },
+    "Bhavnagar": {
+      "lat": 21.7645,
+      "lon": 72.1519,
+      "climate": "semi_arid"
+    },
+    "Mehsana": {
+      "lat": 23.588,
+      "lon": 72.3693,
+      "climate": "semi_arid"
+    },
+    "Anand": {
+      "lat": 22.5645,
+      "lon": 72.9289,
+      "climate": "semi_arid"
+    }
+  },
+  "Karnataka": {
+    "Bengaluru": {
+      "lat": 12.9716,
+      "lon": 77.5946,
+      "climate": "semi_arid"
+    },
+    "Mysuru": {
+      "lat": 12.2958,
+      "lon": 76.6394,
+      "climate": "semi_arid"
+    },
+    "Belgaum": {
+      "lat": 15.8497,
+      "lon": 74.4977,
+      "climate": "semi_arid"
+    },
+    "Hubli": {
+      "lat": 15.3647,
+      "lon": 75.124,
+      "climate": "semi_arid"
+    },
+    "Dharwad": {
+      "lat": 15.4589,
+      "lon": 75.0078,
+      "climate": "semi_arid"
+    },
+    "Bijapur": {
+      "lat": 16.8302,
+      "lon": 75.71,
+      "climate": "semi_arid"
+    },
+    "Gulbarga": {
+      "lat": 17.3297,
+      "lon": 76.8343,
+      "climate": "semi_arid"
+    },
+    "Bellary": {
+      "lat": 15.1394,
+      "lon": 76.9214,
+      "climate": "semi_arid"
+    },
+    "Shimoga": {
+      "lat": 13.9299,
+      "lon": 75.5681,
+      "climate": "tropical_wet"
+    },
+    "Davangere": {
+      "lat": 14.4644,
+      "lon": 75.9218,
+      "climate": "semi_arid"
+    }
+  },
+  "Tamil Nadu": {
+    "Chennai": {
+      "lat": 13.0827,
+      "lon": 80.2707,
+      "climate": "tropical_wet_dry"
+    },
+    "Coimbatore": {
+      "lat": 11.0168,
+      "lon": 76.9558,
+      "climate": "semi_arid"
+    },
+    "Madurai": {
+      "lat": 9.9252,
+      "lon": 78.1198,
+      "climate": "semi_arid"
+    },
+    "Salem": {
+      "lat": 11.6643,
+      "lon": 78.146,
+      "climate": "semi_arid"
+    },
+    "Tiruchirapalli": {
+      "lat": 10.7905,
+      "lon": 78.7047,
+      "climate": "semi_arid"
+    },
+    "Thanjavur": {
+      "lat": 10.787,
+      "lon": 79.1378,
+      "climate": "tropical_wet_dry"
+    },
+    "Erode": {
+      "lat": 11.341,
+      "lon": 77.7172,
+      "climate": "semi_arid"
+    },
+    "Tirunelveli": {
+      "lat": 8.7139,
+      "lon": 77.7567,
+      "climate": "semi_arid"
+    }
+  },
+  "Uttar Pradesh": {
+    "Lucknow": {
+      "lat": 26.8467,
+      "lon": 80.9462,
+      "climate": "humid_subtropical"
+    },
+    "Kanpur": {
+      "lat": 26.4499,
+      "lon": 80.3319,
+      "climate": "humid_subtropical"
+    },
+    "Agra": {
+      "lat": 27.1767,
+      "lon": 78.0081,
+      "climate": "semi_arid"
+    },
+    "Varanasi": {
+      "lat": 25.3176,
+      "lon": 82.9739,
+      "climate": "humid_subtropical"
+    },
+    "Allahabad": {
+      "lat": 25.4358,
+      "lon": 81.8463,
+      "climate": "humid_subtropical"
+    },
+    "Meerut": {
+      "lat": 28.9845,
+      "lon": 77.7064,
+      "climate": "humid_subtropical"
+    },
+    "Bareilly": {
+      "lat": 28.367,
+      "lon": 79.4304,
+      "climate": "humid_subtropical"
+    },
+    "Gorakhpur": {
+      "lat": 26.7606,
+      "lon": 83.3732,
+      "climate": "humid_subtropical"
+    }
+  },
+  "Madhya Pradesh": {
+    "Bhopal": {
+      "lat": 23.2599,
+      "lon": 77.4126,
+      "climate": "humid_subtropical"
+    },
+    "Indore": {
+      "lat": 22.7196,
+      "lon": 75.8577,
+      "climate": "semi_arid"
+    },
+    "Jabalpur": {
+      "lat": 23.1815,
+      "lon": 79.9864,
+      "climate": "humid_subtropical"
+    },
+    "Gwalior": {
+      "lat": 26.2183,
+      "lon": 78.1828,
+      "climate": "semi_arid"
+    },
+    "Ujjain": {
+      "lat": 23.1765,
+      "lon": 75.7885,
+      "climate": "semi_arid"
+    },
+    "Sagar": {
+      "lat": 23.8388,
+      "lon": 78.7378,
+      "climate": "humid_subtropical"
+    },
+    "Rewa": {
+      "lat": 24.5373,
+      "lon": 81.3042,
+      "climate": "humid_subtropical"
+    }
+  },
+  "Punjab": {
+    "Ludhiana": {
+      "lat": 30.901,
+      "lon": 75.8573,
+      "climate": "humid_subtropical"
+    },
+    "Amritsar": {
+      "lat": 31.634,
+      "lon": 74.8723,
+      "climate": "humid_subtropical"
+    },
+    "Jalandhar": {
+      "lat": 31.326,
+      "lon": 75.5762,
+      "climate": "humid_subtropical"
+    },
+    "Patiala": {
+      "lat": 30.3398,
+      "lon": 76.3869,
+      "climate": "humid_subtropical"
+    },
+    "Bathinda": {
+      "lat": 30.211,
+      "lon": 74.9455,
+      "climate": "semi_arid"
+    },
+    "Mohali": {
+      "lat": 30.7046,
+      "lon": 76.7179,
+      "climate": "humid_subtropical"
+    }
+  },
+  "Rajasthan": {
+    "Jaipur": {
+      "lat": 26.9124,
+      "lon": 75.7873,
+      "climate": "semi_arid"
+    },
+    "Jodhpur": {
+      "lat": 26.2389,
+      "lon": 73.0243,
+      "climate": "arid"
+    },
+    "Udaipur": {
+      "lat": 24.5854,
+      "lon": 73.7125,
+      "climate": "semi_arid"
+    },
+    "Kota": {
+      "lat": 25.2138,
+      "lon": 75.8648,
+      "climate": "semi_arid"
+    },
+    "Ajmer": {
+      "lat": 26.4499,
+      "lon": 74.6399,
+      "climate": "semi_arid"
+    },
+    "Bikaner": {
+      "lat": 28.0229,
+      "lon": 73.3119,
+      "climate": "arid"
+    },
+    "Alwar": {
+      "lat": 27.553,
+      "lon": 76.6346,
+      "climate": "semi_arid"
+    }
+  },
+  "Andhra Pradesh": {
+    "Hyderabad": {
+      "lat": 17.385,
+      "lon": 78.4867,
+      "climate": "semi_arid"
+    },
+    "Visakhapatnam": {
+      "lat": 17.6868,
+      "lon": 83.2185,
+      "climate": "tropical_wet_dry"
+    },
+    "Vijayawada": {
+      "lat": 16.5062,
+      "lon": 80.648,
+      "climate": "tropical_wet_dry"
+    },
+    "Guntur": {
+      "lat": 16.3067,
+      "lon": 80.4365,
+      "climate": "tropical_wet_dry"
+    },
+    "Nellore": {
+      "lat": 14.4426,
+      "lon": 79.9865,
+      "climate": "tropical_wet_dry"
+    },
+    "Kurnool": {
+      "lat": 15.8281,
+      "lon": 78.0373,
+      "climate": "semi_arid"
+    },
+    "Tirupati": {
+      "lat": 13.6288,
+      "lon": 79.4192,
+      "climate": "semi_arid"
+    }
+  },
+  "West Bengal": {
+    "Kolkata": {
+      "lat": 22.5726,
+      "lon": 88.3639,
+      "climate": "tropical_wet_dry"
+    },
+    "Howrah": {
+      "lat": 22.5958,
+      "lon": 88.2636,
+      "climate": "tropical_wet_dry"
+    },
+    "Durgapur": {
+      "lat": 23.5204,
+      "lon": 87.3119,
+      "climate": "tropical_wet_dry"
+    },
+    "Siliguri": {
+      "lat": 26.7271,
+      "lon": 88.6393,
+      "climate": "humid_subtropical"
+    },
+    "Asansol": {
+      "lat": 23.6739,
+      "lon": 86.9524,
+      "climate": "tropical_wet_dry"
+    },
+    "Bardhaman": {
+      "lat": 23.2324,
+      "lon": 87.8615,
+      "climate": "tropical_wet_dry"
+    }
+  },
+  "Bihar": {
+    "Patna": {
+      "lat": 25.5941,
+      "lon": 85.1376,
+      "climate": "humid_subtropical"
+    },
+    "Gaya": {
+      "lat": 24.7914,
+      "lon": 85.0002,
+      "climate": "humid_subtropical"
+    },
+    "Muzaffarpur": {
+      "lat": 26.1209,
+      "lon": 85.3647,
+      "climate": "humid_subtropical"
+    },
+    "Bhagalpur": {
+      "lat": 25.2425,
+      "lon": 87.0079,
+      "climate": "humid_subtropical"
+    },
+    "Darbhanga": {
+      "lat": 26.1542,
+      "lon": 85.8918,
+      "climate": "humid_subtropical"
+    }
+  }
+}

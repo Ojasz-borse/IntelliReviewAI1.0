@@ -1,0 +1,30 @@
+{
+  "model_type": "XGBClassifier",
+  "best_model": "xgboost",
+  "training_date": "2026-01-16T19:39:29.622388",
+  "feature_count": 15,
+  "feature_columns": [
+    "Month",
+    "WeekOfYear",
+    "temperature",
+    "humidity",
+    "rainfall",
+    "soil_suitability",
+    "demand_score",
+    "avg_modal_price",
+    "price_volatility",
+    "transaction_count",
+    "State_encoded",
+    "District_encoded",
+    "Commodity_encoded",
+    "Season_encoded",
+    "soil_type_encoded"
+  ],
+  "classes": [
+    "High",
+    "Low",
+    "Medium",
+    "Very High"
+  ],
+  "export_date": "2026-01-16T19:39:59.899616"
+}

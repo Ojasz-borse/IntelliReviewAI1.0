@@ -1,0 +1,627 @@
+{
+  "Wheat": {
+    "category": "cereal",
+    "season": "rabi",
+    "temp_min": 10,
+    "temp_max": 25,
+    "temp_optimal": 18,
+    "rainfall_min": 50,
+    "rainfall_max": 100,
+    "humidity_min": 40,
+    "humidity_max": 70,
+    "growth_days": 120,
+    "soil_types": [
+      "alluvial",
+      "black",
+      "red"
+    ],
+    "water_requirement": "low",
+    "hindi_name": "गेहूं",
+    "commodity_code": 1
+  },
+  "Rice": {
+    "category": "cereal",
+    "season": "kharif",
+    "temp_min": 20,
+    "temp_max": 37,
+    "temp_optimal": 28,
+    "rainfall_min": 100,
+    "rainfall_max": 200,
+    "humidity_min": 60,
+    "humidity_max": 90,
+    "growth_days": 120,
+    "soil_types": [
+      "alluvial",
+      "black"
+    ],
+    "water_requirement": "high",
+    "hindi_name": "चावल",
+    "commodity_code": 3
+  },
+  "Maize": {
+    "category": "cereal",
+    "season": "kharif",
+    "temp_min": 18,
+    "temp_max": 32,
+    "temp_optimal": 25,
+    "rainfall_min": 60,
+    "rainfall_max": 120,
+    "humidity_min": 50,
+    "humidity_max": 80,
+    "growth_days": 100,
+    "soil_types": [
+      "alluvial",
+      "red",
+      "black"
+    ],
+    "water_requirement": "medium",
+    "hindi_name": "मक्का",
+    "commodity_code": 4
+  },
+  "Jowar(Sorghum)": {
+    "category": "cereal",
+    "season": "kharif",
+    "temp_min": 25,
+    "temp_max": 35,
+    "temp_optimal": 30,
+    "rainfall_min": 40,
+    "rainfall_max": 100,
+    "humidity_min": 30,
+    "humidity_max": 60,
+    "growth_days": 100,
+    "soil_types": [
+      "black",
+      "red",
+      "sandy"
+    ],
+    "water_requirement": "low",
+    "hindi_name": "ज्वार",
+    "commodity_code": 5
+  },
+  "Bajra(Pearl Millet/Cumbu)": {
+    "category": "cereal",
+    "season": "kharif",
+    "temp_min": 25,
+    "temp_max": 35,
+    "temp_optimal": 30,
+    "rainfall_min": 25,
+    "rainfall_max": 60,
+    "humidity_min": 20,
+    "humidity_max": 50,
+    "growth_days": 90,
+    "soil_types": [
+      "sandy",
+      "red",
+      "black"
+    ],
+    "water_requirement": "very_low",
+    "hindi_name": "बाजरा",
+    "commodity_code": 28
+  },
+  "Bengal Gram(Gram)(Whole)": {
+    "category": "pulse",
+    "season": "rabi",
+    "temp_min": 15,
+    "temp_max": 25,
+    "temp_optimal": 20,
+    "rainfall_min": 40,
+    "rainfall_max": 80,
+    "humidity_min": 30,
+    "humidity_max": 60,
+    "growth_days": 110,
+    "soil_types": [
+      "black",
+      "alluvial",
+      "red"
+    ],
+    "water_requirement": "low",
+    "hindi_name": "चना",
+    "commodity_code": 6
+  },
+  "Green Gram (Moong)(Whole)": {
+    "category": "pulse",
+    "season": "kharif",
+    "temp_min": 25,
+    "temp_max": 35,
+    "temp_optimal": 30,
+    "rainfall_min": 50,
+    "rainfall_max": 90,
+    "humidity_min": 50,
+    "humidity_max": 80,
+    "growth_days": 65,
+    "soil_types": [
+      "alluvial",
+      "red",
+      "black"
+    ],
+    "water_requirement": "low",
+    "hindi_name": "मूंग",
+    "commodity_code": 9
+  },
+  "Lentil (Masur)(Whole)": {
+    "category": "pulse",
+    "season": "rabi",
+    "temp_min": 15,
+    "temp_max": 25,
+    "temp_optimal": 20,
+    "rainfall_min": 40,
+    "rainfall_max": 80,
+    "humidity_min": 40,
+    "humidity_max": 70,
+    "growth_days": 100,
+    "soil_types": [
+      "alluvial",
+      "black"
+    ],
+    "water_requirement": "low",
+    "hindi_name": "मसूर",
+    "commodity_code": 63
+  },
+  "Mustard": {
+    "category": "oilseed",
+    "season": "rabi",
+    "temp_min": 10,
+    "temp_max": 25,
+    "temp_optimal": 18,
+    "rainfall_min": 30,
+    "rainfall_max": 60,
+    "humidity_min": 40,
+    "humidity_max": 70,
+    "growth_days": 110,
+    "soil_types": [
+      "alluvial",
+      "black"
+    ],
+    "water_requirement": "low",
+    "hindi_name": "सरसों",
+    "commodity_code": 12
+  },
+  "Ground Nut Seed": {
+    "category": "oilseed",
+    "season": "kharif",
+    "temp_min": 22,
+    "temp_max": 30,
+    "temp_optimal": 26,
+    "rainfall_min": 50,
+    "rainfall_max": 120,
+    "humidity_min": 50,
+    "humidity_max": 80,
+    "growth_days": 120,
+    "soil_types": [
+      "red",
+      "sandy",
+      "alluvial"
+    ],
+    "water_requirement": "medium",
+    "hindi_name": "मूंगफली",
+    "commodity_code": 268
+  },
+  "Tomato": {
+    "category": "vegetable",
+    "season": "all",
+    "temp_min": 15,
+    "temp_max": 30,
+    "temp_optimal": 22,
+    "rainfall_min": 40,
+    "rainfall_max": 80,
+    "humidity_min": 50,
+    "humidity_max": 80,
+    "growth_days": 90,
+    "soil_types": [
+      "alluvial",
+      "red",
+      "black"
+    ],
+    "water_requirement": "medium",
+    "hindi_name": "टमाटर",
+    "commodity_code": 78
+  },
+  "Onion": {
+    "category": "vegetable",
+    "season": "rabi",
+    "temp_min": 13,
+    "temp_max": 24,
+    "temp_optimal": 18,
+    "rainfall_min": 35,
+    "rainfall_max": 75,
+    "humidity_min": 50,
+    "humidity_max": 70,
+    "growth_days": 130,
+    "soil_types": [
+      "alluvial",
+      "black",
+      "red"
+    ],
+    "water_requirement": "low",
+    "hindi_name": "प्याज",
+    "commodity_code": 79
+  },
+  "Potato": {
+    "category": "vegetable",
+    "season": "rabi",
+    "temp_min": 15,
+    "temp_max": 22,
+    "temp_optimal": 18,
+    "rainfall_min": 50,
+    "rainfall_max": 100,
+    "humidity_min": 60,
+    "humidity_max": 85,
+    "growth_days": 100,
+    "soil_types": [
+      "alluvial",
+      "red"
+    ],
+    "water_requirement": "medium",
+    "hindi_name": "आलू",
+    "commodity_code": 80
+  },
+  "Green Chilli": {
+    "category": "vegetable",
+    "season": "all",
+    "temp_min": 20,
+    "temp_max": 35,
+    "temp_optimal": 28,
+    "rainfall_min": 60,
+    "rainfall_max": 120,
+    "humidity_min": 60,
+    "humidity_max": 85,
+    "growth_days": 75,
+    "soil_types": [
+      "alluvial",
+      "black",
+      "red"
+    ],
+    "water_requirement": "medium",
+    "hindi_name": "हरी मिर्च",
+    "commodity_code": 87
+  },
+  "Cabbage": {
+    "category": "vegetable",
+    "season": "rabi",
+    "temp_min": 15,
+    "temp_max": 20,
+    "temp_optimal": 17,
+    "rainfall_min": 40,
+    "rainfall_max": 80,
+    "humidity_min": 60,
+    "humidity_max": 80,
+    "growth_days": 90,
+    "soil_types": [
+      "alluvial",
+      "black"
+    ],
+    "water_requirement": "medium",
+    "hindi_name": "पत्ता गोभी",
+    "commodity_code": 154
+  },
+  "Cauliflower": {
+    "category": "vegetable",
+    "season": "rabi",
+    "temp_min": 15,
+    "temp_max": 22,
+    "temp_optimal": 18,
+    "rainfall_min": 40,
+    "rainfall_max": 80,
+    "humidity_min": 60,
+    "humidity_max": 85,
+    "growth_days": 85,
+    "soil_types": [
+      "alluvial",
+      "black"
+    ],
+    "water_requirement": "medium",
+    "hindi_name": "फूल गोभी",
+    "commodity_code": 34
+  },
+  "Carrot": {
+    "category": "vegetable",
+    "season": "rabi",
+    "temp_min": 15,
+    "temp_max": 20,
+    "temp_optimal": 17,
+    "rainfall_min": 40,
+    "rainfall_max": 80,
+    "humidity_min": 60,
+    "humidity_max": 80,
+    "growth_days": 80,
+    "soil_types": [
+      "alluvial",
+      "red"
+    ],
+    "water_requirement": "medium",
+    "hindi_name": "गाजर",
+    "commodity_code": 153
+  },
+  "Brinjal": {
+    "category": "vegetable",
+    "season": "kharif",
+    "temp_min": 22,
+    "temp_max": 32,
+    "temp_optimal": 27,
+    "rainfall_min": 50,
+    "rainfall_max": 100,
+    "humidity_min": 50,
+    "humidity_max": 75,
+    "growth_days": 70,
+    "soil_types": [
+      "alluvial",
+      "red",
+      "black"
+    ],
+    "water_requirement": "medium",
+    "hindi_name": "बैंगन",
+    "commodity_code": 35
+  },
+  "Beans": {
+    "category": "vegetable",
+    "season": "all",
+    "temp_min": 18,
+    "temp_max": 28,
+    "temp_optimal": 23,
+    "rainfall_min": 60,
+    "rainfall_max": 100,
+    "humidity_min": 60,
+    "humidity_max": 80,
+    "growth_days": 60,
+    "soil_types": [
+      "alluvial",
+      "red"
+    ],
+    "water_requirement": "medium",
+    "hindi_name": "फलियाँ",
+    "commodity_code": 94
+  },
+  "Spinach": {
+    "category": "vegetable",
+    "season": "rabi",
+    "temp_min": 10,
+    "temp_max": 22,
+    "temp_optimal": 16,
+    "rainfall_min": 30,
+    "rainfall_max": 60,
+    "humidity_min": 50,
+    "humidity_max": 70,
+    "growth_days": 45,
+    "soil_types": [
+      "alluvial",
+      "black"
+    ],
+    "water_requirement": "medium",
+    "hindi_name": "पालक",
+    "commodity_code": 342
+  },
+  "Pumpkin": {
+    "category": "vegetable",
+    "season": "kharif",
+    "temp_min": 18,
+    "temp_max": 30,
+    "temp_optimal": 24,
+    "rainfall_min": 60,
+    "rainfall_max": 100,
+    "humidity_min": 60,
+    "humidity_max": 80,
+    "growth_days": 100,
+    "soil_types": [
+      "alluvial",
+      "black"
+    ],
+    "water_requirement": "low",
+    "hindi_name": "कद्दू",
+    "commodity_code": 84
+  },
+  "Bitter gourd": {
+    "category": "vegetable",
+    "season": "kharif",
+    "temp_min": 24,
+    "temp_max": 35,
+    "temp_optimal": 30,
+    "rainfall_min": 60,
+    "rainfall_max": 100,
+    "humidity_min": 60,
+    "humidity_max": 80,
+    "growth_days": 55,
+    "soil_types": [
+      "alluvial",
+      "red"
+    ],
+    "water_requirement": "medium",
+    "hindi_name": "करेला",
+    "commodity_code": 81
+  },
+  "Bottle gourd": {
+    "category": "vegetable",
+    "season": "kharif",
+    "temp_min": 25,
+    "temp_max": 35,
+    "temp_optimal": 30,
+    "rainfall_min": 60,
+    "rainfall_max": 100,
+    "humidity_min": 60,
+    "humidity_max": 80,
+    "growth_days": 60,
+    "soil_types": [
+      "alluvial",
+      "black"
+    ],
+    "water_requirement": "medium",
+    "hindi_name": "लौकी",
+    "commodity_code": 82
+  },
+  "Turmeric": {
+    "category": "spice",
+    "season": "kharif",
+    "temp_min": 20,
+    "temp_max": 30,
+    "temp_optimal": 25,
+    "rainfall_min": 100,
+    "rainfall_max": 200,
+    "humidity_min": 70,
+    "humidity_max": 90,
+    "growth_days": 270,
+    "soil_types": [
+      "alluvial",
+      "red"
+    ],
+    "water_requirement": "high",
+    "hindi_name": "हल्दी",
+    "commodity_code": 39
+  },
+  "Ginger(Green)": {
+    "category": "spice",
+    "season": "kharif",
+    "temp_min": 20,
+    "temp_max": 30,
+    "temp_optimal": 25,
+    "rainfall_min": 150,
+    "rainfall_max": 300,
+    "humidity_min": 70,
+    "humidity_max": 90,
+    "growth_days": 240,
+    "soil_types": [
+      "alluvial",
+      "red",
+      "laterite"
+    ],
+    "water_requirement": "high",
+    "hindi_name": "अदरक",
+    "commodity_code": 103
+  },
+  "Sugar": {
+    "category": "cash_crop",
+    "season": "all",
+    "temp_min": 20,
+    "temp_max": 35,
+    "temp_optimal": 28,
+    "rainfall_min": 100,
+    "rainfall_max": 200,
+    "humidity_min": 60,
+    "humidity_max": 85,
+    "growth_days": 365,
+    "soil_types": [
+      "alluvial",
+      "black"
+    ],
+    "water_requirement": "high",
+    "hindi_name": "गन्ना",
+    "commodity_code": 48
+  },
+  "Coconut": {
+    "category": "cash_crop",
+    "season": "all",
+    "temp_min": 20,
+    "temp_max": 35,
+    "temp_optimal": 27,
+    "rainfall_min": 100,
+    "rainfall_max": 250,
+    "humidity_min": 60,
+    "humidity_max": 90,
+    "growth_days": 365,
+    "soil_types": [
+      "laterite",
+      "red",
+      "alluvial"
+    ],
+    "water_requirement": "medium",
+    "hindi_name": "नारियल",
+    "commodity_code": 138
+  },
+  "Banana - Green": {
+    "category": "fruit",
+    "season": "all",
+    "temp_min": 22,
+    "temp_max": 32,
+    "temp_optimal": 27,
+    "rainfall_min": 100,
+    "rainfall_max": 200,
+    "humidity_min": 60,
+    "humidity_max": 90,
+    "growth_days": 300,
+    "soil_types": [
+      "alluvial",
+      "red",
+      "laterite"
+    ],
+    "water_requirement": "high",
+    "hindi_name": "केला",
+    "commodity_code": 90
+  },
+  "Mango (Raw-Ripe)": {
+    "category": "fruit",
+    "season": "summer",
+    "temp_min": 24,
+    "temp_max": 40,
+    "temp_optimal": 32,
+    "rainfall_min": 50,
+    "rainfall_max": 150,
+    "humidity_min": 40,
+    "humidity_max": 70,
+    "growth_days": 180,
+    "soil_types": [
+      "alluvial",
+      "red",
+      "laterite"
+    ],
+    "water_requirement": "medium",
+    "hindi_name": "आम",
+    "commodity_code": 172
+  },
+  "Sweet Potato": {
+    "category": "vegetable",
+    "season": "kharif",
+    "temp_min": 20,
+    "temp_max": 30,
+    "temp_optimal": 25,
+    "rainfall_min": 75,
+    "rainfall_max": 150,
+    "humidity_min": 60,
+    "humidity_max": 85,
+    "growth_days": 120,
+    "soil_types": [
+      "alluvial",
+      "red",
+      "sandy"
+    ],
+    "water_requirement": "medium",
+    "hindi_name": "शकरकंद",
+    "commodity_code": 152
+  },
+  "Peas Wet": {
+    "category": "vegetable",
+    "season": "rabi",
+    "temp_min": 10,
+    "temp_max": 18,
+    "temp_optimal": 14,
+    "rainfall_min": 40,
+    "rainfall_max": 80,
+    "humidity_min": 60,
+    "humidity_max": 80,
+    "growth_days": 80,
+    "soil_types": [
+      "alluvial",
+      "black"
+    ],
+    "water_requirement": "medium",
+    "hindi_name": "मटर",
+    "commodity_code": 174
+  },
+  "Drumstick": {
+    "category": "vegetable",
+    "season": "all",
+    "temp_min": 25,
+    "temp_max": 40,
+    "temp_optimal": 32,
+    "rainfall_min": 50,
+    "rainfall_max": 150,
+    "humidity_min": 40,
+    "humidity_max": 75,
+    "growth_days": 180,
+    "soil_types": [
+      "alluvial",
+      "red",
+      "sandy"
+    ],
+    "water_requirement": "low",
+    "hindi_name": "सहजन",
+    "commodity_code": 168
+  }
+}

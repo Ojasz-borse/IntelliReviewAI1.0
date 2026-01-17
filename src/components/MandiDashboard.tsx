@@ -3,6 +3,7 @@ import axios from 'axios';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart } from 'recharts';
 import { Sprout, CloudRain, TrendingUp, TrendingDown, Sun, Languages, Volume2, RefreshCw, AlertCircle, Wheat, Leaf, CloudSun, MapPin, X, Send, Loader2, Mic } from 'lucide-react';
 import { useLanguage, LanguageProvider } from '../contexts/LanguageContext';
+import CropPredictionModal from './CropPredictionModal';
 
 const API_URL = "http://127.0.0.1:8000";
 
@@ -222,6 +223,7 @@ const MandiDashboardContent: React.FC = () => {
     const [error, setError] = useState<string | null>(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [showAISallagar, setShowAISallagar] = useState(false);
+    const [showCropPrediction, setShowCropPrediction] = useState(false);
 
     // Load filters from API
     useEffect(() => {
@@ -334,9 +336,9 @@ const MandiDashboardContent: React.FC = () => {
     const getCropName = (crop: string) => language === 'mr' ? (DEFAULT_CROP_TRANSLATIONS[crop] || crop) : crop;
     const getDistrictName = (district: string) => language === 'mr' ? (DEFAULT_DISTRICT_TRANSLATIONS[district] || district) : district;
 
-    // Feature handlers (placeholders for future implementation)
+    // Feature handlers
     const handleSeedSuggestion = () => alert(language === 'mr' ? 'बीज सूचना लवकरच येत आहे!' : 'Seed suggestions coming soon!');
-    const handleCropPrediction = () => alert(language === 'mr' ? 'पीक अंदाज लवकरच येत आहे!' : 'Crop prediction coming soon!');
+    const handleCropPrediction = () => setShowCropPrediction(true);
     const handleWeatherForecast = () => alert(language === 'mr' ? 'हवामान अंदाज लवकरच येत आहे!' : 'Weather forecast coming soon!');
 
     return (
@@ -608,6 +610,13 @@ const MandiDashboardContent: React.FC = () => {
             <AISallagarModal
                 isOpen={showAISallagar}
                 onClose={() => setShowAISallagar(false)}
+                language={language}
+            />
+
+            {/* Crop Prediction Modal */}
+            <CropPredictionModal
+                isOpen={showCropPrediction}
+                onClose={() => setShowCropPrediction(false)}
                 language={language}
             />
         </div>

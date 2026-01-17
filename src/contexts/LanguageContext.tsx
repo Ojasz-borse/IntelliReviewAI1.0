@@ -57,6 +57,10 @@ const translations: Record<Language, Record<string, string>> = {
         'features.ai.desc': 'स्मार्ट विक्री शिफारसी',
         'features.voice': 'आवाज सहाय्य',
         'features.voice.desc': 'मराठीमध्ये ऐका',
+        'features.crop': 'पीक अंदाज',
+        'features.crop.desc': 'AI वर आधारित शिफारस',
+        'features.seed': 'बीज सूचना',
+        'features.seed.desc': 'सर्वोत्तम बीज शोधा',
 
         // Language toggle
         'lang.switch': 'English',
@@ -115,6 +119,10 @@ const translations: Record<Language, Record<string, string>> = {
         'features.ai.desc': 'Smart selling recommendations',
         'features.voice': 'Voice Support',
         'features.voice.desc': 'Listen in Marathi',
+        'features.crop': 'Crop Prediction',
+        'features.crop.desc': 'AI-based recommendation',
+        'features.seed': 'Seed Suggestions',
+        'features.seed.desc': 'Find best seeds',
 
         // Language toggle
         'lang.switch': 'मराठी',
