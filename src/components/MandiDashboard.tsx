@@ -4,6 +4,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { Sprout, CloudRain, TrendingUp, TrendingDown, Sun, Languages, Volume2, RefreshCw, AlertCircle, Wheat, Leaf, CloudSun, MapPin, X, Send, Loader2, Mic } from 'lucide-react';
 import { useLanguage, LanguageProvider } from '../contexts/LanguageContext';
 import CropPredictionModal from './CropPredictionModal';
+import WeatherForecastModal from './WeatherForecastModal';
 
 const API_URL = "http://127.0.0.1:8000";
 
@@ -410,6 +411,7 @@ const MandiDashboardContent: React.FC = () => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [showAISallagar, setShowAISallagar] = useState(false);
     const [showCropPrediction, setShowCropPrediction] = useState(false);
+    const [showWeatherForecast, setShowWeatherForecast] = useState(false);
 
     // Load filters from API
     useEffect(() => {
@@ -548,7 +550,7 @@ const MandiDashboardContent: React.FC = () => {
     // Feature handlers
     const handleSeedSuggestion = () => alert(language === 'mr' ? 'बीज सूचना लवकरच येत आहे!' : 'Seed suggestions coming soon!');
     const handleCropPrediction = () => setShowCropPrediction(true);
-    const handleWeatherForecast = () => alert(language === 'mr' ? 'हवामान अंदाज लवकरच येत आहे!' : 'Weather forecast coming soon!');
+    const handleWeatherForecast = () => setShowWeatherForecast(true);
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-green-50 via-emerald-50/30 to-white">
@@ -816,6 +818,14 @@ const MandiDashboardContent: React.FC = () => {
                 isOpen={showCropPrediction}
                 onClose={() => setShowCropPrediction(false)}
                 language={language}
+            />
+
+            {/* Weather Forecast Modal */}
+            <WeatherForecastModal
+                isOpen={showWeatherForecast}
+                onClose={() => setShowWeatherForecast(false)}
+                language={language}
+                district={selectedDistrict}
             />
         </div>
     );
