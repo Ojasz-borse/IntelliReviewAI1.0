@@ -558,15 +558,15 @@ const MandiDashboardContent: React.FC = () => {
                 {/* Header */}
                 <header className="mb-6">
                     <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-5">
-                        <div className="flex items-center gap-3">
-                            <div className="p-2.5 bg-green-500 rounded-xl">
+                        <div className="flex items-center gap-4">
+                            <div className="p-3 bg-green-500 rounded-xl shadow-lg shadow-green-200">
                                 <Sprout className="w-8 h-8 text-white" />
                             </div>
-                            <div>
-                                <h1 className="text-2xl md:text-3xl font-bold text-green-700">
+                            <div className="pl-1">
+                                <h1 className="text-2xl md:text-3xl font-bold text-green-700 tracking-tight">
                                     {t('app.title')}
                                 </h1>
-                                <p className="text-gray-500 text-sm">{t('app.subtitle')}</p>
+                                <p className="text-gray-500 text-sm mt-0.5">{t('app.subtitle')}</p>
                             </div>
                         </div>
 
