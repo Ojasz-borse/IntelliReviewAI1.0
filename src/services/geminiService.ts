@@ -3,15 +3,14 @@ import { db } from './firebase';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import type { CarAnalysisResponse, SocialAnalysisResponse, LoanAnalysisResponse, NewsAnalysisResponse } from '../types';
 
-// Do not use process.env.API_KEY, this is a placeholder
-// The API key is injected by the environment
-const apiKey = process.env.API_KEY;
-if (!apiKey) {
-    // In a real app, you'd want to handle this more gracefully.
-    // For this context, we assume the key is present.
-    console.warn("API_KEY environment variable not set.");
-}
-const ai = new GoogleGenAI({ apiKey: apiKey! });
+const getAI = () => {
+    const apiKey = process.env.API_KEY;
+    if (!apiKey) {
+        console.error("API_KEY environment variable not set.");
+        throw new Error("API Key missing. Please set GEMINI_API_KEY in your environment variables.");
+    }
+    return new GoogleGenAI({ apiKey });
+};
 
 // --- User Intent Summarization & Firestore Logging ---
 export const saveSearchQuery = async (userId: string, query: string, analysisType: 'car' | 'loan' | 'news', analysisResult: any) => {
@@ -32,7 +31,7 @@ export const saveSearchQuery = async (userId: string, query: string, analysisTyp
             Summarize the intent for the provided query and result.
         `;
 
-        const intentResponse = await ai.models.generateContent({
+        const intentResponse = await getAI().models.generateContent({
             model: 'gemini-3-flash-preview',
             contents: prompt,
         });
@@ -104,7 +103,7 @@ export const analyzeCarDataWithGemini = async (rawData: string, userQuery: strin
     `;
 
     try {
-        const response = await ai.models.generateContent({
+        const response = await getAI().models.generateContent({
             model: 'gemini-3-flash-preview',
             contents: prompt,
             config: {
@@ -184,7 +183,7 @@ export const analyzeSocialDataWithGemini = async (rawData: string, profileUrl: s
     `;
 
     try {
-        const response = await ai.models.generateContent({
+        const response = await getAI().models.generateContent({
             model: 'gemini-3-flash-preview',
             contents: prompt,
             config: {
@@ -267,7 +266,7 @@ export const analyzeLoanDataWithGemini = async (rawData: string): Promise<LoanAn
     `;
 
     try {
-        const response = await ai.models.generateContent({
+        const response = await getAI().models.generateContent({
             model: 'gemini-3-flash-preview',
             contents: prompt,
             config: {
@@ -338,7 +337,7 @@ export const analyzeNewsDataWithGemini = async (rawData: string, userQuery: stri
     `;
 
     try {
-        const response = await ai.models.generateContent({
+        const response = await getAI().models.generateContent({
             model: 'gemini-3-flash-preview',
             contents: prompt,
             config: {
